@@ -87,8 +87,14 @@ window.App = (function () {
         b.classList.toggle("active", b.dataset.screen === screen);
       });
       const content = document.getElementById("content");
-      content.scrollTop = 0;
       Screens[screen](content);
+      // Reset scroll now and again after fonts swap in (which reflows tall
+      // screens); overflow-anchor:none keeps that reflow from shifting scroll.
+      content.scrollTop = 0;
+      requestAnimationFrame(() => { content.scrollTop = 0; });
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => { content.scrollTop = 0; });
+      }
     },
 
     currentScreen() { return current; },
@@ -110,7 +116,10 @@ window.App = (function () {
       State.init(be, rawState);
       Content.load(rawContent);
       if (State.get("onboarded")) {
-        this.enterMainShell("home");
+        const self = this;
+        backend.start_screen(function (dev) {
+          self.enterMainShell(dev && Screens[dev] ? dev : "home");
+        });
       } else {
         Onboarding.render(document.getElementById("root"));
       }

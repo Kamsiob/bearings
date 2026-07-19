@@ -196,6 +196,7 @@ button { font-family: inherit; cursor: pointer; }
 #content {
   flex: 1; min-width: 0;
   overflow-y: auto; overflow-x: hidden;
+  overflow-anchor: none;          /* don't let font-load reflow shift scroll */
   padding: 26px 34px 40px;
 }
 .screen { max-width: 1120px; margin: 0 auto; animation: fade 0.22s ease; }

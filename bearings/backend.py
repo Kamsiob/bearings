@@ -5,6 +5,7 @@ content loading, and (Phase 12) the single opt-in content-update request. Every
 method JS calls is a @Slot; state and content cross the bridge as JSON strings.
 """
 import json
+import os
 
 from PySide6.QtCore import QObject, Signal, Slot
 
@@ -29,6 +30,12 @@ class Backend(QObject):
     @Slot(result=str)
     def app_version(self) -> str:
         return __version__
+
+    @Slot(result=str)
+    def start_screen(self) -> str:
+        """Dev helper: BEARINGS_START_SCREEN forces the initial screen (empty in
+        normal use). Lets screenshots target a specific screen without clicking."""
+        return os.environ.get("BEARINGS_START_SCREEN", "")
 
     # --- local state (disk-backed, atomic writes) ----------------------------
     @Slot(result=str)
