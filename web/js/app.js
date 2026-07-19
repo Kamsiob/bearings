@@ -93,12 +93,22 @@ window.App = (function () {
       if (el) el.textContent = State.get("platform") || "—";
     },
 
+    // Render the persistent shell and land on `screen` (used after onboarding).
+    enterMainShell(screen) {
+      this.clearFilter();
+      renderShell();
+      this.navigate(screen || "home");
+    },
+
     boot(be, rawState, rawContent) {
       backend = be;
       State.init(be, rawState);
       Content.load(rawContent);
-      renderShell();
-      this.navigate("home");   // onboarding gating is added in Phase 5
+      if (State.get("onboarded")) {
+        this.enterMainShell("home");
+      } else {
+        Onboarding.render(document.getElementById("root"));
+      }
     },
   };
 })();
