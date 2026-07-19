@@ -1,0 +1,3 @@
+# Bearings by Kamsiob — runtime dependencies.
+# Everything else (local file state, the single content-update request) uses the stdlib.
+PySide6==6.11.1
