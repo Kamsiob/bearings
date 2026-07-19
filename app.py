@@ -33,11 +33,13 @@ class AppPage(QWebEnginePage):
         print(f"[js:{src}:{line}] {message}", flush=True)
 
 ROOT = Path(__file__).resolve().parent
-WEB = ROOT / "web"
-ASSETS = ROOT / "assets"
 sys.path.insert(0, str(ROOT))
 
+from bearings import config  # noqa: E402
 from bearings.backend import Backend  # noqa: E402
+
+WEB = config.WEB          # frozen-aware (bundle or source)
+ASSETS = config.ASSETS
 
 APP_NAME = "Bearings"
 ORG_NAME = "Kamsiob"

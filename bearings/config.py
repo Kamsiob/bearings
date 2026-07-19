@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -28,8 +29,17 @@ APP_DIR = "bearings"
 CONTENT_UPDATE_URL = (
     "https://raw.githubusercontent.com/kamsiob/bearings/main/content/content.json"
 )
-ROOT = Path(__file__).resolve().parent.parent
+def _resource_root() -> Path:
+    """Where bundled resources (web/, content/, assets/) live. Works both from
+    source and from a PyInstaller bundle (sys._MEIPASS)."""
+    if getattr(sys, "frozen", False):
+        return Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
+    return Path(__file__).resolve().parent.parent
+
+
+ROOT = _resource_root()
 WEB = ROOT / "web"
+ASSETS = ROOT / "assets"
 BUNDLED_CONTENT = ROOT / "content" / "content.json"
 BUNDLED_CHEATSHEETS = ROOT / "content" / "cheatsheets.json"
 

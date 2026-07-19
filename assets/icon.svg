@@ -1,0 +1,60 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7B5CF0"/>
+      <stop offset="0.55" stop-color="#5A3ED6"/>
+      <stop offset="1" stop-color="#3B2699"/>
+    </linearGradient>
+    <radialGradient id="glowP" cx="0.28" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#9C86FF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#9C86FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowG" cx="0.8" cy="0.84" r="0.55">
+      <stop offset="0" stop-color="#E8B04B" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#E8B04B" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="round"><rect x="0" y="0" width="512" height="512" rx="116" ry="116"/></clipPath>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- rounded-square background + soft ambient glow -->
+  <g clip-path="url(#round)">
+    <rect x="0" y="0" width="512" height="512" fill="url(#bg)"/>
+    <circle cx="150" cy="128" r="220" fill="url(#glowP)"/>
+    <circle cx="410" cy="430" r="200" fill="url(#glowG)"/>
+    <rect x="0" y="0" width="512" height="512" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2" rx="116"/>
+  </g>
+
+  <!-- compass mark -->
+  <g transform="translate(256 256)">
+    <circle r="150" fill="none" stroke="#F1EDFB" stroke-opacity="0.28" stroke-width="10"/>
+    <circle r="150" fill="none" stroke="#F1EDFB" stroke-width="8"/>
+
+    <!-- cardinal ticks -->
+    <g stroke="#F1EDFB" stroke-width="9" stroke-linecap="round">
+      <line x1="0" y1="-150" x2="0" y2="-120"/>
+      <line x1="0" y1="150" x2="0" y2="120"/>
+      <line x1="-150" y1="0" x2="-120" y2="0"/>
+      <line x1="150" y1="0" x2="120" y2="0"/>
+    </g>
+    <!-- diagonal ticks -->
+    <g stroke="#F1EDFB" stroke-opacity="0.6" stroke-width="6" stroke-linecap="round">
+      <line x1="-106" y1="-106" x2="-90" y2="-90"/>
+      <line x1="106" y1="-106" x2="90" y2="-90"/>
+      <line x1="-106" y1="106" x2="-90" y2="90"/>
+      <line x1="106" y1="106" x2="90" y2="90"/>
+    </g>
+
+    <!-- needle -->
+    <g filter="url(#soft)" opacity="0.55">
+      <path d="M0 -104 L30 0 L0 -18 L-30 0 Z" fill="#C9B8FF"/>
+      <path d="M0 104 L-30 0 L0 18 L30 0 Z" fill="#F0C874"/>
+    </g>
+    <path d="M0 -104 L30 0 L0 -18 L-30 0 Z" fill="#FFFFFF"/>
+    <path d="M0 104 L-30 0 L0 18 L30 0 Z" fill="#E8B04B"/>
+    <circle r="17" fill="#2B1D57"/>
+    <circle r="9" fill="#F1EDFB"/>
+  </g>
+</svg>

@@ -1,0 +1,4 @@
+# Build-time only (not needed to run from source). Install with:
+#   pip install -r requirements-dev.txt
+-r requirements.txt
+PyInstaller==6.21.0
