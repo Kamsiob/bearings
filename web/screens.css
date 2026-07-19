@@ -155,3 +155,39 @@
 .deck-peek-title { color: var(--ink-muted); }
 .deck-peek:hover .deck-peek-title { color: var(--ink); }
 .deck-peek-empty { margin-top: 12px; color: var(--ink-muted); font-size: 0.85rem; }
+
+/* --- Checklist ----------------------------------------------------------- */
+.cl-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.cl-overall { min-width: 200px; padding-top: 6px; }
+.cl-overall .mono-label { display: block; margin-bottom: 8px; text-align: right; }
+.cl-bar { height: 6px; border-radius: var(--r-pill); background: rgba(255,255,255,0.08); overflow: hidden; }
+.cl-bar-fill { display: block; height: 100%; border-radius: var(--r-pill); transition: width 0.25s ease; }
+.cl-bar-lg { height: 8px; }
+
+.cl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+@media (max-width: 880px) { .cl-grid { grid-template-columns: 1fr; } }
+.cl-card { padding: 20px 20px 12px; }
+.cl-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.cl-cat { display: flex; align-items: center; }
+.cl-cat-label { font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; }
+.cl-count { color: var(--ink-muted); }
+.cl-card .cl-bar { margin-bottom: 8px; }
+
+.cl-rows { display: flex; flex-direction: column; }
+.cl-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 8px; border: 0; background: transparent; color: var(--ink);
+  text-align: left; width: 100%; font-size: 0.94rem; line-height: 1.4;
+  border-radius: 10px; transition: background 0.12s ease;
+}
+.cl-row:hover { background: rgba(255,255,255,0.05); }
+.cl-box {
+  flex: 0 0 20px; width: 20px; height: 20px; margin-top: 1px;
+  border-radius: 7px; border: 1.5px solid var(--glass-border);
+  display: grid; place-items: center; color: transparent;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+.cl-box svg { width: 13px; height: 13px; }
+.cl-row.done .cl-box { background: var(--cat); border-color: transparent; color: var(--cat-ink); }
+.cl-text { transition: opacity 0.12s ease; }
+.cl-row.done .cl-text { text-decoration: line-through; opacity: 0.55; }
