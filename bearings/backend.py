@@ -81,6 +81,15 @@ class Backend(QObject):
         """The single public URL the update check contacts (shown in Settings)."""
         return config.CONTENT_UPDATE_URL
 
+    # --- external links ------------------------------------------------------
+    @Slot(str)
+    def open_url(self, url: str) -> None:
+        """Open an external link in the system browser, or a mailto: in the mail
+        client. Only http(s) and mailto are allowed."""
+        url = (url or "").strip()
+        if url.startswith(("http://", "https://", "mailto:")):
+            QDesktopServices.openUrl(QUrl(url))
+
     # --- the one opt-in outbound request -------------------------------------
     @Slot()
     def check_content_update(self) -> None:

@@ -283,3 +283,41 @@
 .toast { padding: 12px 20px; border-radius: var(--r-pill); font-size: 0.9rem; font-weight: 500;
   box-shadow: var(--shadow-soft); opacity: 0; transform: translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease; }
 .toast.show { opacity: 1; transform: none; }
+
+/* --- About --------------------------------------------------------------- */
+.about-screen { max-width: 680px; }
+.about-brand { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.about-desc { font-size: 1.12rem; line-height: 1.5; color: var(--ink); opacity: 0.95; margin: 0 0 22px; }
+.about-callout { padding: 20px 22px; margin-bottom: 28px; }
+.about-callout p { margin: 0 0 10px; font-size: 0.95rem; line-height: 1.5; color: var(--ink); }
+.about-callout p:last-child { margin-bottom: 0; }
+.about-callout-coffee { color: var(--ink-muted) !important; }
+
+.about-more .mono-label { display: block; margin-bottom: 12px; }
+.about-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.about-link, .about-feedback {
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left;
+  padding: 14px 18px; border-radius: var(--r-card);
+  border: 1px solid var(--glass-border); background: var(--glass); color: var(--ink);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.06s ease;
+}
+.about-link:hover { background: rgba(255,255,255,0.09); }
+.about-link:active, .about-feedback:active { transform: translateY(1px); }
+.about-link-icon { width: 24px; height: 24px; flex: 0 0 24px; color: var(--primary-light); display: inline-flex; }
+.about-link-icon svg { width: 24px; height: 24px; }
+.about-link-text { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+.about-link-title { font-weight: 600; font-size: 0.98rem; }
+.about-link-url { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-muted); }
+.about-link-ext { width: 18px; height: 18px; color: var(--ink-muted); flex: 0 0 18px; display: inline-flex; }
+.about-link-ext svg { width: 18px; height: 18px; }
+
+/* feedback row: tinted in the primary purple, visually distinct */
+.about-feedback {
+  margin-top: 4px;
+  background: rgba(108,79,224,0.16); border-color: rgba(156,134,255,0.45);
+}
+.about-feedback:hover { background: rgba(108,79,224,0.24); }
+.about-feedback .about-link-icon, .about-feedback .about-link-ext { color: var(--primary-light); }
+
+.about-foot { margin-top: 28px; color: var(--ink-muted); font-size: 0.85rem;
+  font-family: var(--font-mono); letter-spacing: 0.04em; }
