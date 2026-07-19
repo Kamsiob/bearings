@@ -17,7 +17,8 @@ window.App = (function () {
 
   let backend = null;
   let current = null;
-  let filter = null;   // active category filter for Deck/Checklist; null = all selected
+  let filter = null;      // active category filter for Deck/Checklist; null = all selected
+  let deckJumpId = null;  // a tip id the Deck should open to (set by Home / links)
 
   function glowMarkup() {
     return `<div id="glow" aria-hidden="true">
@@ -74,6 +75,10 @@ window.App = (function () {
       filter = Array.from(base);
     },
     clearFilter() { filter = null; },
+
+    // Ask the Deck to open on a specific tip the next time it renders.
+    setDeckTo(id) { deckJumpId = id; },
+    takeDeckJump() { const id = deckJumpId; deckJumpId = null; return id; },
 
     navigate(screen) {
       if (!Screens[screen]) screen = "home";
