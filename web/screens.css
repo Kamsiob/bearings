@@ -292,6 +292,17 @@
 .about-callout p { margin: 0 0 10px; font-size: 0.95rem; line-height: 1.5; color: var(--ink); }
 .about-callout p:last-child { margin-bottom: 0; }
 .about-callout-coffee { color: var(--ink-muted) !important; }
+/* Buy Me a Coffee — understated inline link, a natural end to the sentence.
+   The only place BMC appears anywhere in the app. */
+.coffee-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  color: var(--gold); font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid rgba(232, 176, 75, 0.35); padding-bottom: 1px;
+  cursor: pointer; white-space: nowrap;
+}
+.coffee-link:hover { color: var(--gold); border-bottom-color: var(--gold); text-decoration: none; }
+.coffee-icon { width: 15px; height: 15px; display: inline-flex; }
+.coffee-icon svg { width: 15px; height: 15px; }
 
 .about-more .mono-label { display: block; margin-bottom: 12px; }
 .about-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }

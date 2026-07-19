@@ -2,9 +2,10 @@
    promises it keeps, external links, and a feedback mailto. */
 Screens.about = function (el) {
   const links = [
-    { icon: "youtube", title: "Kamsiob on Linux", url: "https://youtube.com/@kamsiob", label: "youtube.com/@kamsiob" },
-    { icon: "github",  title: "Source code",      url: "https://github.com/kamsiob",   label: "github.com/kamsiob" },
-    { icon: "globe",   title: "Website",          url: "https://kamsiob.com",          label: "kamsiob.com" },
+    { icon: "youtube",  title: "Kamsiob on Linux", url: "https://youtube.com/@kamsiob",       label: "youtube.com/@kamsiob" },
+    { icon: "github",   title: "Source code",      url: "https://github.com/kamsiob",         label: "github.com/kamsiob" },
+    { icon: "globe",    title: "Website",          url: "https://kamsiob.com",                label: "kamsiob.com" },
+    { icon: "telegram", title: "Kamsiob Lab",      url: "https://t.me/+g5LKm9rUnNcxMjk5",      label: "Our community group on Telegram" },
   ];
 
   function open(url) {
@@ -39,8 +40,10 @@ Screens.about = function (el) {
       <div class="glass about-callout">
         <p><b>Zero data collection.</b> Everything runs locally on your machine. No accounts, no
         telemetry, no analytics — nothing phones home. Free and open source under the MIT license.</p>
-        <p class="about-callout-coffee">If there's ever a way to support the project, it's a
-        Buy&nbsp;Me&nbsp;a&nbsp;Coffee-style link — never a paywall, never anything gated behind payment.</p>
+        <p class="about-callout-coffee">It's free, and it stays free — no paywall, nothing ever gated
+        behind payment. If it's helped you find your footing, you can
+        <a class="coffee-link" data-url="https://buymeacoffee.com/kamsiob">
+          <span class="coffee-icon">${ICONS.coffee()}</span>buy me a coffee</a> — only if you feel like it.</p>
       </div>
 
       <div class="about-more">

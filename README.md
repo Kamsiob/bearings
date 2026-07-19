@@ -14,6 +14,21 @@
   <img alt="Telemetry: none" src="https://img.shields.io/badge/telemetry-none-brightgreen">
 </p>
 
+<p align="center">
+  <img src="screenshots/lookup.png" width="840" alt="Lookup — the Familiar Territory table matching apps you know to their Linux equivalents">
+</p>
+
+<table align="center">
+  <tr>
+    <td><img src="screenshots/home.png" width="410" alt="Home screen"></td>
+    <td><img src="screenshots/deck.png" width="410" alt="Deck — one tip at a time"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/checklist.png" width="410" alt="Checklist grouped by category"></td>
+    <td><img src="screenshots/cheatsheet.png" width="410" alt="Cheat Sheet — printable one-pagers"></td>
+  </tr>
+</table>
+
 > **Everything stays local. No accounts, no telemetry, no analytics, nothing phones home.**
 > The only time Bearings touches the internet is one *opt-in* content-update check against a
 > public file on GitHub, and when you tap an external link (opens your browser) or the feedback
