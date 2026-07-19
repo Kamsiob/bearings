@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bearings by Kamsiob</title>
+  <style>
+    html, body {
+      margin: 0; height: 100%;
+      background: #15101F; color: #F1EDFB;
+      font-family: system-ui, sans-serif;
+      display: grid; place-items: center;
+    }
+    .card { text-align: center; opacity: 0.9; }
+    h1 { font-weight: 600; }
+    #bridge { margin-top: 1rem; color: #A79FC4; font-size: 0.9rem; }
+    .ok { color: #4ADE80; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Bearings</h1>
+    <div id="bridge">connecting to backend…</div>
+  </div>
+
+  <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+  <script>
+    new QWebChannel(qt.webChannelTransport, function (channel) {
+      const backend = channel.objects.backend;
+      const el = document.getElementById('bridge');
+      backend.ping('hello from the frontend', function (reply) {
+        backend.app_version(function (version) {
+          el.innerHTML = '<span class="ok">bridge ok</span> — ' + reply +
+                         ' (v' + version + ')';
+          console.log('[bearings] bridge test:', reply, 'version', version);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
