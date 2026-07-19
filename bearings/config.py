@@ -14,9 +14,20 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 APP_DIR = "bearings"
+
+# The one public file the app ever fetches. Points at the project repo's raw
+# content.json — a plain version check, no personal data sent. If it isn't
+# publicly reachable (e.g. the repo is private), the check fails silently and
+# the cached copy is kept.
+CONTENT_UPDATE_URL = (
+    "https://raw.githubusercontent.com/kamsiob/bearings/main/content/content.json"
+)
 ROOT = Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
 BUNDLED_CONTENT = ROOT / "content" / "content.json"
@@ -116,3 +127,41 @@ def is_newer(candidate: str | None, current: str | None, or_equal: bool = False)
     """True if `candidate` is a newer version than `current` (dotted ints)."""
     a, b = _parse(candidate), _parse(current)
     return a >= b if or_equal else a > b
+
+
+# --- the single opt-in update check --------------------------------------
+def _valid_content(data: object) -> bool:
+    return (isinstance(data, dict) and isinstance(data.get("tips"), list)
+            and len(data["tips"]) > 0)
+
+
+def check_for_update(url: str = CONTENT_UPDATE_URL, timeout: int = 8) -> dict:
+    """Fetch the public content file, compare versions, and replace the local
+    cache only if the remote copy is strictly newer. Never raises — on any
+    failure it returns ok=False and the cached copy is left untouched.
+
+    Nothing about the user or device is sent; this is a plain GET of one public
+    file (the request's source IP is visible to GitHub, as with any web request).
+    """
+    local = load_content()
+    local_v = local.get("version")
+    checked_at = datetime.now(timezone.utc).isoformat()
+
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Bearings/1.0"})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            remote = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, ValueError, OSError, TimeoutError):
+        return {"ok": False, "updated": False, "localVersion": local_v,
+                "remoteVersion": None, "checkedAt": checked_at,
+                "message": "Couldn't reach GitHub — keeping the current copy."}
+
+    remote_v = remote.get("version") if isinstance(remote, dict) else None
+    if _valid_content(remote) and is_newer(remote_v, local_v):
+        save_content_cache(remote)
+        return {"ok": True, "updated": True, "localVersion": remote_v,
+                "remoteVersion": remote_v, "checkedAt": checked_at,
+                "message": f"Updated to v{remote_v}."}
+    return {"ok": True, "updated": False, "localVersion": local_v,
+            "remoteVersion": remote_v, "checkedAt": checked_at,
+            "message": "You're on the latest content."}

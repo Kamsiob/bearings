@@ -117,15 +117,57 @@ window.App = (function () {
       this.navigate(screen || "home");
     },
 
+    // Transient toast (used for Python->JS notifications).
+    toast(message) {
+      let host = document.getElementById("toast-host");
+      if (!host) {
+        host = document.createElement("div");
+        host.id = "toast-host";
+        document.body.appendChild(host);
+      }
+      const t = document.createElement("div");
+      t.className = "toast glass";
+      t.textContent = message;
+      host.appendChild(t);
+      requestAnimationFrame(() => t.classList.add("show"));
+      setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 300); }, 3400);
+    },
+
+    // Result of a content-update check (manual or auto).
+    onUpdateResult(json) {
+      let r = {};
+      try { r = JSON.parse(json || "{}"); } catch (e) { return; }
+      State.update({ lastChecked: r.checkedAt || null, contentVersion: r.localVersion || null });
+      if (r.updated && backend && backend.load_content) {
+        backend.load_content(function (cj) {
+          try { Content.load(JSON.parse(cj || "{}")); } catch (e) {}
+          App.toast(r.message || "Content updated");
+          if (current) App.navigate(current);   // re-render with fresh content
+        });
+      } else {
+        App.toast(r.message || "Checked for updates");
+        if (current === "settings") App.navigate("settings");
+      }
+    },
+
     boot(be, rawState, rawContent) {
       backend = be;
       window.backendRef = be;   // for lazy per-screen bridge calls
       State.init(be, rawState);
       Content.load(rawContent);
+
+      if (be.notify && be.notify.connect) be.notify.connect((m) => App.toast(m));
+      if (be.content_update && be.content_update.connect)
+        be.content_update.connect((j) => App.onUpdateResult(j));
+
+      const startAndMaybeCheck = (screen) => {
+        this.enterMainShell(screen);
+        if (State.get("updateAutoCheck") && be.check_content_update) be.check_content_update();
+      };
+
       if (State.get("onboarded")) {
-        const self = this;
         backend.start_screen(function (dev) {
-          self.enterMainShell(dev && Screens[dev] ? dev : "home");
+          startAndMaybeCheck(dev && Screens[dev] ? dev : "home");
         });
       } else {
         Onboarding.render(document.getElementById("root"));

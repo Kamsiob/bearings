@@ -6,6 +6,7 @@ method JS calls is a @Slot; state and content cross the bridge as JSON strings.
 """
 import json
 import os
+import threading
 from pathlib import Path
 
 from PySide6.QtCore import QMarginsF, QObject, Signal, Slot, QTimer, QUrl
@@ -19,8 +20,9 @@ from bearings import __version__, config, cheatsheet_pdf
 class Backend(QObject):
     """Exposed to JS as `backend`. Every method the front-end calls is a @Slot."""
 
-    # Python -> JS pushes (used more heavily in later phases).
+    # Python -> JS pushes.
     notify = Signal(str)
+    content_update = Signal(str)   # JSON result of an update check
 
     def __init__(self) -> None:
         super().__init__()
@@ -73,6 +75,21 @@ class Backend(QObject):
     def load_cheatsheets(self) -> str:
         """Return the cheat-sheet reference content as JSON."""
         return json.dumps(config.load_cheatsheets())
+
+    @Slot(result=str)
+    def content_url(self) -> str:
+        """The single public URL the update check contacts (shown in Settings)."""
+        return config.CONTENT_UPDATE_URL
+
+    # --- the one opt-in outbound request -------------------------------------
+    @Slot()
+    def check_content_update(self) -> None:
+        """Check the public content file for a newer version. Runs off the GUI
+        thread; the result is delivered via the content_update signal."""
+        def worker() -> None:
+            result = config.check_for_update()
+            self.content_update.emit(json.dumps(result))
+        threading.Thread(target=worker, daemon=True).start()
 
     # --- cheat-sheet PDF export ----------------------------------------------
     @Slot(str)

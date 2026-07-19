@@ -252,3 +252,34 @@
 .cs-sec-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--primary-light);
   margin: 0 0 6px; padding-bottom: 5px; border-bottom: 1px solid var(--glass-border); }
 .cs-cols .cs-table td { border-top: 0; padding: 5px 8px; }
+
+/* --- Settings ------------------------------------------------------------ */
+.set-panel { padding: 22px 24px; margin-bottom: 18px; }
+.set-title { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 0 0 4px; }
+.set-help { color: var(--ink-muted); font-size: 0.9rem; margin: 0 0 16px; max-width: 640px; line-height: 1.45; }
+.set-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.set-toggle { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 6px 0 14px; cursor: pointer; }
+.set-toggle-label { font-weight: 500; }
+.switch { position: relative; width: 46px; height: 26px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.12); border: 1px solid var(--glass-border); flex: 0 0 46px; transition: background 0.2s ease; }
+.switch .knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; transition: transform 0.2s ease; }
+.switch.on { background: var(--primary); border-color: transparent; box-shadow: var(--shadow-primary); }
+.switch.on .knob { transform: translateX(20px); }
+
+.set-update-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin: 6px 0 4px; }
+.set-check:disabled { opacity: 0.6; cursor: default; }
+.set-update-meta { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+.set-update-meta .mono-label { margin-right: 8px; }
+.set-update-meta b { color: var(--ink); font-weight: 600; }
+.set-note { color: var(--ink-muted); font-size: 0.85rem; line-height: 1.5; margin: 16px 0 6px; max-width: 680px;
+  border-left: 2px solid rgba(232,176,75,0.4); padding-left: 12px; }
+.set-url { word-break: break-all; opacity: 0.7; margin: 0; }
+
+/* --- Toast --------------------------------------------------------------- */
+#toast-host { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 50;
+  display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
+.toast { padding: 12px 20px; border-radius: var(--r-pill); font-size: 0.9rem; font-weight: 500;
+  box-shadow: var(--shadow-soft); opacity: 0; transform: translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease; }
+.toast.show { opacity: 1; transform: none; }
