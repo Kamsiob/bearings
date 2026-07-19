@@ -110,9 +110,13 @@ window.addEventListener("DOMContentLoaded", function () {
     backend.load_state(function (rawStateJson) {
       let rawState = {};
       try { rawState = JSON.parse(rawStateJson || "{}"); } catch (e) {}
-      // Content JSON is wired in Phase 4/7; boot with empty content for now.
-      App.boot(backend, rawState, { version: null, tips: [], lookup: [] });
-      console.log("[bearings] booted");
+      backend.load_content(function (rawContentJson) {
+        let rawContent = { version: null, tips: [], lookup: [] };
+        try { rawContent = JSON.parse(rawContentJson || "{}"); } catch (e) {}
+        App.boot(backend, rawState, rawContent);
+        console.log("[bearings] booted — content v" + (rawContent.version || "?") +
+                    ", " + (rawContent.tips || []).length + " tips");
+      });
     });
   });
 });

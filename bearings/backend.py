@@ -1,18 +1,14 @@
 """Backend — the object exposed to the web UI as `backend` over QWebChannel.
 
-Bridges the web front-end to the thin Python layer: local state persistence and
-(later) the single opt-in content-update request. Every method JS calls is a
-@Slot. State is passed as JSON strings across the bridge.
+Bridges the web front-end to the thin Python layer: local state persistence,
+content loading, and (Phase 12) the single opt-in content-update request. Every
+method JS calls is a @Slot; state and content cross the bridge as JSON strings.
 """
 import json
 
 from PySide6.QtCore import QObject, Signal, Slot
 
-from bearings import __version__
-
-# Phase 3 uses an in-memory store so the shell is runnable; Phase 4 replaces the
-# read/write internals with a real on-disk state file (survives restarts).
-_MEM_STATE: dict = {}
+from bearings import __version__, config
 
 
 class Backend(QObject):
@@ -34,17 +30,24 @@ class Backend(QObject):
     def app_version(self) -> str:
         return __version__
 
-    # --- local state (in-memory in Phase 3; disk-backed in Phase 4) ----------
+    # --- local state (disk-backed, atomic writes) ----------------------------
     @Slot(result=str)
     def load_state(self) -> str:
-        """Return the persisted user state as a JSON string ({} if none)."""
-        return json.dumps(_MEM_STATE)
+        """Return persisted user state as a JSON string ({} if none yet)."""
+        return json.dumps(config.load_state())
 
     @Slot(str)
     def save_state(self, state_json: str) -> None:
         """Persist the full user state (a JSON string) from the front-end."""
-        global _MEM_STATE
         try:
-            _MEM_STATE = json.loads(state_json)
+            state = json.loads(state_json)
         except (ValueError, TypeError):
-            pass
+            return
+        if isinstance(state, dict):
+            config.save_state(state)
+
+    # --- content -------------------------------------------------------------
+    @Slot(result=str)
+    def load_content(self) -> str:
+        """Return the active content (cached copy or bundled seed) as JSON."""
+        return json.dumps(config.load_content())

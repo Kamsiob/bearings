@@ -1,0 +1,475 @@
+{
+  "version": "1.0.0",
+  "tips": [
+    {
+      "id": 1,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "The system is read-only, on purpose.",
+      "body": "Bazzite's base install can't be casually broken. Apps install through Flatpak, sandboxed and separate from the parts that keep your system stable, instead of a package manager touching the core."
+    },
+    {
+      "id": 2,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "There are three ways to install software, and when each one is right.",
+      "body": "Flatpak is the default for most apps, sandboxed and safe. Package layering, using rpm-ostree, can install almost anything traditional but requires a reboot every time and is best used sparingly. A container, using Distrobox, is best for developer tools that need a full traditional Linux environment running alongside Bazzite without touching the base system."
+    },
+    {
+      "id": 3,
+      "category": "universal",
+      "tag": "Trick",
+      "title": "Drag the file, skip the typing.",
+      "body": "Any terminal command that needs a file's location will accept a literal drag and drop. Pull the file from your file manager into the terminal window and the full path types itself, no memorizing paths required."
+    },
+    {
+      "id": 4,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "The rollback screen on first real boot is normal.",
+      "body": "That's Bazzite's atomic update safety net showing itself, not a broken install."
+    },
+    {
+      "id": 5,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "A blue setup screen asking to Enroll MOK is normal too.",
+      "body": "That's Secure Boot enrollment, a security key confirmation, not an error. It's part of a clean install, not a sign something went wrong."
+    },
+    {
+      "id": 6,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Everything on Linux needs the terminal is a skewed impression, not the reality.",
+      "body": "People making tutorials are disproportionately terminal-comfortable and default to typing out of habit even when a button does the same thing. Troubleshooting content is terminal-heavy because that's genuinely where interfaces fall short, but it overrepresents the worst case as if it were normal daily use. Day to day, most things have a button."
+    },
+    {
+      "id": 7,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Picking the wrong distro isn't the risk it feels like.",
+      "body": "Once something works, most people stay for years, not months. If you ever did switch, you're not starting from zero, you already understand what Linux is doing conceptually, you'd just be relearning some distro-specific vocabulary."
+    },
+    {
+      "id": 8,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "BTRFS matters for your backup drive too, not just the system disk.",
+      "body": "Bazzite's own root filesystem uses BTRFS because it checksums data as it's written and can detect or self-heal corruption. Worth formatting an external backup drive the same way rather than defaulting to exFAT or NTFS."
+    },
+    {
+      "id": 9,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Built-in rollback already covers what a lot of people reach for a separate imaging tool for.",
+      "body": "A full disk imaging tool is really only useful as an occasional supplement before a risky change. Bazzite's atomic rollback already handles the an update broke something, restore a working state scenario most new users worry about."
+    },
+    {
+      "id": 10,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "A website is often the simplest fix, not a fallback.",
+      "body": "Many services people assume need a dedicated app work perfectly as a website, and can be installed as a progressive web app, meaning a website that opens in its own window with its own icon and no browser toolbar, for a native feel without needing any dedicated Linux client at all."
+    },
+    {
+      "id": 11,
+      "category": "universal",
+      "tag": "Gotcha",
+      "title": "Verify Linux support before buying a niche peripheral.",
+      "body": "Some audio interfaces, capture cards, and specialty accessories need manual driver workarounds on Linux, or lack certain software controls, like gain knobs, entirely in software. A quick search for the exact model plus the word Linux before buying saves a real headache later."
+    },
+    {
+      "id": 12,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Plug and play hardware support is better than the old reputation suggests, though it's not universal.",
+      "body": "Webcams and most USB audio devices tend to just work with no driver hunting. It's a real improvement over Linux's old reputation, just not a guarantee for every device, see the peripheral tip above."
+    },
+    {
+      "id": 13,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Coming from ChromeOS, you already have more of a head start than it feels like.",
+      "body": "ChromeOS runs on a Linux kernel, but as a locked-down appliance where Google controls everything, no root access, no changing the desktop, no traditional installed software. Bazzite isn't introducing you to Linux so much as handing you the keys to something you were already halfway inside of. A lot of daily habits, Gmail, Google Calendar, Google Docs, all browser-based, keep working immediately with zero setup."
+    },
+    {
+      "id": 14,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "There's more than one Bazzite edition, and picking the right one matters.",
+      "body": "A plain desktop edition for regular PCs and laptops, an edition that boots straight into a console-style Steam interface for handhelds and living-room setups, and a developer-focused edition are the main options. Most people setting up a regular desktop or laptop want the plain desktop edition."
+    },
+    {
+      "id": 15,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "Your graphics drivers are already part of the operating system image, not something you install separately.",
+      "body": "AMD, Intel, and Nvidia drivers all come baked in and update automatically along with the rest of the system, there's no separate driver download to manage the way there is on Windows."
+    },
+    {
+      "id": 16,
+      "category": "universal",
+      "tag": "Gotcha",
+      "title": "Switching graphics card brands means switching your whole system image, not just installing a new driver.",
+      "body": "If you swap from an AMD or Intel card to an Nvidia one, or the other way around, you'll need to move to the matching image so the correct drivers are included."
+    },
+    {
+      "id": 17,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "A message about a system transaction already in progress during an update isn't an error.",
+      "body": "It usually just means the system is already downloading and applying an update quietly in the background, safe to leave alone."
+    },
+    {
+      "id": 18,
+      "category": "universal",
+      "tag": "Gotcha",
+      "title": "Dual-booting with Windows can knock out your Wi-Fi or wired connection in Bazzite.",
+      "body": "Windows' Fast Startup feature leaves some hardware in a half-asleep state that can carry over strangely into Linux on the next boot. Turning Fast Startup off in Windows' power settings usually fixes it for good."
+    },
+    {
+      "id": 19,
+      "category": "universal",
+      "tag": "Concept",
+      "title": "If installing Windows afterward breaks your ability to boot into Bazzite, there's an official fix for that.",
+      "body": "A bootloader restoration tool, run from the same USB drive used to install Bazzite, can restore it without needing to reinstall anything."
+    },
+    {
+      "id": 20,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "Switching your desktop environment later isn't as simple as flipping a setting.",
+      "body": "Moving from KDE to GNOME, or back, on an existing install tends to leave behind broken, mismatched configuration files. A fresh install of the other edition is the more reliable way to try it."
+    },
+    {
+      "id": 21,
+      "category": "universal",
+      "tag": "Gotcha",
+      "title": "Don't theme your bootloader.",
+      "body": "Customizing GRUB's appearance isn't supported and carries a real risk of leaving the system unable to boot at all."
+    },
+    {
+      "id": 22,
+      "category": "universal",
+      "tag": "Trick",
+      "title": "ujust commands turn common maintenance tasks into short, memorable phrases instead of long technical procedures.",
+      "body": "Typing ujust on its own lists everything available, things like updating everything at once, fixing crackling audio, or resetting Steam back to a clean state. A graphical app called Bazzite Portal wraps the most popular ones in clickable buttons, for whenever typing commands still feels like a hurdle."
+    },
+    {
+      "id": 23,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "If your app menu or system theme briefly looks like plain Fedora instead of Bazzite's own branding, that's a known cosmetic quirk on some setups, not a sign the install went wrong.",
+      "body": "It's purely visual and doesn't affect how the system works."
+    },
+    {
+      "id": 24,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "Systemd services come in two flavors, and the difference matters.",
+      "body": "A user service only runs while you're logged in. A system service runs regardless, and needs elevated permissions to set up. Enabling linger keeps a user service alive even without an active login session, useful for anything you want running in the background persistently."
+    },
+    {
+      "id": 25,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "Distrobox is your escape hatch for traditional dev environments.",
+      "body": "It runs a full, unrestricted container of nearly any Linux distro side by side with Bazzite, useful when a tool or library genuinely needs a traditional package manager rather than Flatpak or layering."
+    },
+    {
+      "id": 26,
+      "category": "coder",
+      "tag": "Gotcha",
+      "title": "Some tools default to ignoring your GPU, especially the integrated one.",
+      "body": "Local AI and GPU-accelerated tools sometimes need an explicit environment variable or config flag before they'll actually use hardware acceleration, particularly integrated graphics. If something feels slower than it should, check whether the tool is actually seeing your GPU before assuming your hardware is the limit."
+    },
+    {
+      "id": 27,
+      "category": "coder",
+      "tag": "Gotcha",
+      "title": "Installers that assume a writable slash usr can silently fail on Bazzite.",
+      "body": "Because the base filesystem is read-only, some traditional installer scripts, especially ones that try to create system users or write to slash usr directly, fail quietly instead of erroring clearly. If a service isn't starting after what looked like a successful install, that's a common cause worth checking first."
+    },
+    {
+      "id": 28,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "AppImage is a fourth way software sometimes comes packaged, alongside Flatpak, layering, and containers.",
+      "body": "It's a single self-contained file that runs without installing anything system-wide, handy for the occasional app that hasn't published a Flatpak yet."
+    },
+    {
+      "id": 29,
+      "category": "creator",
+      "tag": "Gotcha",
+      "title": "DaVinci Resolve's Linux audio gap isn't fixed by paying for Studio.",
+      "body": "The missing AAC audio decode affects both the free and paid versions on Linux, it's a licensing issue, not a feature gate. Most phone and camera footage uses AAC audio, so it's worth knowing before an import goes silent."
+    },
+    {
+      "id": 30,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "Codecs decide more than feature lists do.",
+      "body": "When comparing editors, check what audio and video formats they can actually decode before comparing timelines and effects. An editor that routes through the system's own ffmpeg, like Kdenlive does on Bazzite, tends to just work with real-world footage with no conversion step."
+    },
+    {
+      "id": 31,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "There's no single perfect photo editor, but there's a solid default.",
+      "body": "GIMP with the community PhotoGIMP preset is the most purpose-built free option for general editing, reshaping the interface to feel more familiar. Darktable handles RAW processing as a separate, complementary tool rather than a competing all-in-one."
+    },
+    {
+      "id": 32,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "Modern noise reduction tools sound noticeably better than the older style.",
+      "body": "Older spectral subtraction noise reduction can make voice audio sound muffled or underwater. Look for a modern, speech-aware option, Kdenlive's Arndn effect is one, rather than defaulting to whichever noise reduction effect appears first in the list."
+    },
+    {
+      "id": 33,
+      "category": "creator",
+      "tag": "Fix",
+      "title": "A local tool won't load at localhost? Try 127.0.0.1 instead.",
+      "body": "Brave has a known bug where the literal word localhost fails to load local web-based tools due to its HTTPS-upgrade behavior. Swapping in 127.0.0.1 with the same port loads it instantly, a quick fix for anyone running local creative or AI tools with a web interface."
+    },
+    {
+      "id": 34,
+      "category": "gamer",
+      "tag": "Reassurance",
+      "title": "Ignore Proton until something breaks.",
+      "body": "Steam handles the vast majority of games automatically through Proton, Valve's built-in compatibility layer. You don't need to configure anything up front."
+    },
+    {
+      "id": 35,
+      "category": "gamer",
+      "tag": "Concept",
+      "title": "If a game misbehaves, work through compatibility options in order.",
+      "body": "Try the stable, default Proton version first, then Proton Experimental, Valve's own newer rolling branch, and only reach for GE-Proton, a community-enhanced version with extra patches, as the last resort for the specific games that need it."
+    },
+    {
+      "id": 36,
+      "category": "gamer",
+      "tag": "Reassurance",
+      "title": "Most major game controllers work right out of the box.",
+      "body": "Xbox, PlayStation, Switch, and most third-party controllers are supported without extra setup or driver hunting."
+    },
+    {
+      "id": 37,
+      "category": "gamer",
+      "tag": "Trick",
+      "title": "Check ProtonDB before assuming a game won't run.",
+      "body": "It's a community-maintained compatibility database for exactly this question, worth a quick look before spending time troubleshooting something that's already a known issue, or already confirmed to run great."
+    },
+    {
+      "id": 38,
+      "category": "gamer",
+      "tag": "Concept",
+      "title": "Steam Gaming Mode is an optional console-style layer, not something everyone needs.",
+      "body": "It's most useful for handhelds and living room setups, a regular desktop install works perfectly well without ever touching it."
+    },
+    {
+      "id": 39,
+      "category": "gamer",
+      "tag": "Reassurance",
+      "title": "If a Windows game insists your Linux graphics drivers are out of date, it's almost always a false alarm.",
+      "body": "Driver version numbers are named differently between Windows and Linux, so a game checking for a specific Windows-style number will flag a perfectly current Linux driver as outdated. Safe to ignore."
+    },
+    {
+      "id": 40,
+      "category": "gamer",
+      "tag": "Gotcha",
+      "title": "Changing your Proton compatibility version too often can temporarily lock you out of a game.",
+      "body": "Titles protected by Denuvo anti-tamper treat a Proton version switch like activating the game on new hardware, more than five switches within 24 hours can trigger a temporary lockout until that window passes."
+    },
+    {
+      "id": 41,
+      "category": "gamer",
+      "tag": "Concept",
+      "title": "If a native Linux version of a game won't launch, try forcing a different compatibility tool anyway.",
+      "body": "Some native Linux ports actually run better, or only run at all, through Steam's Legacy Runtime compatibility option, found in the game's properties under Compatibility."
+    },
+    {
+      "id": 42,
+      "category": "gamer",
+      "tag": "Gotcha",
+      "title": "A common piece of gaming advice you'll see repeated online, adding gamemoderun to a game's launch options, can actually stop it from launching on Bazzite.",
+      "body": "That optimization tool isn't part of Bazzite by default, so the launch option just fails. Remove it from launch options if a game that used to work suddenly won't start."
+    },
+    {
+      "id": 43,
+      "category": "gamer",
+      "tag": "Gotcha",
+      "title": "Keep your Steam game library off NTFS-formatted drives.",
+      "body": "An external or secondary drive formatted the Windows way can cause permission errors with Steam and Proton, reformatting it to a native Linux filesystem avoids the headache."
+    },
+    {
+      "id": 44,
+      "category": "gamer",
+      "tag": "Fix",
+      "title": "An Xbox controller stuck in a Bluetooth connecting loop, with the Xbox button endlessly flashing, is usually a firmware problem, not a Bazzite problem.",
+      "body": "Updating the controller's firmware through Microsoft's official accessories app, which needs a Windows machine or a virtual one, typically clears it right up."
+    },
+    {
+      "id": 45,
+      "category": "gamer",
+      "tag": "Trick",
+      "title": "If a specific game won't launch and you need help troubleshooting, Steam can generate a diagnostic log for it.",
+      "body": "Adding a launch option to that one game creates a log file in your home folder that's genuinely useful to share when asking for help."
+    },
+    {
+      "id": 46,
+      "category": "productivity",
+      "tag": "Gotcha",
+      "title": "Skip the system-wide Google or Microsoft sign-in.",
+      "body": "System Settings, then Online Accounts, is a known source of frustration for connecting these logins, the embedded browser window often trips the provider's own security warnings. Add the account directly inside the app that needs it, like the mail or calendar app, instead, it's more reliable."
+    },
+    {
+      "id": 47,
+      "category": "productivity",
+      "tag": "Concept",
+      "title": "Your default email client isn't your only option, but it's a fine one.",
+      "body": "KDE's own KMail, part of the Kontact suite and matching your desktop theme automatically, and Betterbird, a polished Thunderbird fork, are both real alternatives if the interface bothers you, but the plain default remains a solid, well-supported choice most people stick with."
+    },
+    {
+      "id": 48,
+      "category": "productivity",
+      "tag": "Concept",
+      "title": "Pair your email client with a matching calendar app.",
+      "body": "Merkuro Calendar is KDE's own calendar app, syncing with Google Calendar, Outlook, and CalDAV generally, a natural companion to KMail if you've set that up."
+    },
+    {
+      "id": 49,
+      "category": "privacy",
+      "tag": "Habit",
+      "title": "Ad blocking without running a server.",
+      "body": "Point your network DNS at a free public resolver like AdGuard or NextDNS for system-wide blocking, no self-hosting, no maintenance required."
+    },
+    {
+      "id": 50,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "The computer you already have can be your NAS.",
+      "body": "Combining Samba file sharing with Tailscale for remote access gets you phone-to-desktop file access without buying dedicated hardware."
+    },
+    {
+      "id": 51,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "Tailscale is useful even if you're not self-hosting anything.",
+      "body": "It creates a private, secure network between your own devices, letting your phone reach your desktop, or vice versa, without opening anything to the public internet."
+    },
+    {
+      "id": 52,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "A use your Gmail here privacy feature is often mostly IMAP with a label.",
+      "body": "Some privacy-focused email services let you connect an existing Gmail account, but mail to anyone not also on that service still flows through Google's servers unencrypted, same as before. Worth checking what the feature actually changes technically before assuming it's a bigger privacy win than it is."
+    }
+  ],
+  "lookup": [
+    {
+      "id": 1,
+      "task": "Email",
+      "familiar": "Outlook or Apple Mail",
+      "linux": "Thunderbird",
+      "note": "The safe default, familiar and reliable, works immediately.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 2,
+      "task": "Calendar",
+      "familiar": "Google Calendar or Outlook Calendar",
+      "linux": "Merkuro Calendar",
+      "note": "KDE-native, syncs with Google and Outlook directly.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 3,
+      "task": "Video editing",
+      "familiar": "Premiere or Final Cut",
+      "linux": "Kdenlive",
+      "note": "Codecs just work, no silent-audio surprises on import.",
+      "verified": "June 2026"
+    },
+    {
+      "id": 4,
+      "task": "Photo editing",
+      "familiar": "Photoshop",
+      "linux": "GIMP plus the PhotoGIMP preset",
+      "note": "PhotoGIMP reshapes the interface to feel familiar, Darktable handles RAW separately.",
+      "verified": "June 2026"
+    },
+    {
+      "id": 5,
+      "task": "Notes",
+      "familiar": "Apple Notes or OneNote",
+      "linux": "Joplin",
+      "note": "Free, private, and syncs entirely on your own terms.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 6,
+      "task": "Office documents",
+      "familiar": "Microsoft Office",
+      "linux": "LibreOffice",
+      "note": "Free and offline, Microsoft 365's own web apps also work fine in-browser if compatibility matters more than offline use.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 7,
+      "task": "Cloud storage",
+      "familiar": "Google Drive or OneDrive",
+      "linux": "A browser tab (the web app version)",
+      "note": "Both work fully as websites with no client needed, self-hosters can look at Nextcloud instead.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 8,
+      "task": "Gaming",
+      "familiar": "Xbox App, Epic, or native installers",
+      "linux": "Steam plus Proton",
+      "note": "Steam Play (Proton) runs most Windows games automatically, no extra setup for most titles.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 9,
+      "task": "WhatsApp",
+      "familiar": "WhatsApp",
+      "linux": "ZapZap",
+      "note": "Unofficial, no official WhatsApp Linux app exists, but this is the most polished wrapper available around WhatsApp Web.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 10,
+      "task": "Telegram",
+      "familiar": "Telegram",
+      "linux": "Telegram (official)",
+      "note": "A genuine official Linux desktop app, available directly on Flathub.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 11,
+      "task": "Signal",
+      "familiar": "Signal",
+      "linux": "Signal (official)",
+      "note": "Official desktop app distributed through Flathub, works well, slightly less polished than the Windows or Mac version.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 12,
+      "task": "Discord",
+      "familiar": "Discord",
+      "linux": "Discord, or Vesktop",
+      "note": "The official Flatpak works but sandboxing breaks a few features, like Rich Presence and Game Activity status, Vesktop is a well-known community alternative that fixes these and strips Discord's own telemetry.",
+      "verified": "July 2026"
+    },
+    {
+      "id": 13,
+      "task": "Password manager",
+      "familiar": "1Password or Keychain",
+      "linux": "Bitwarden",
+      "note": "Already cross-platform, nothing to switch, it works the same way here as anywhere else.",
+      "verified": "July 2026"
+    }
+  ]
+}
