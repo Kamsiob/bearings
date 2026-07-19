@@ -6,10 +6,14 @@ method JS calls is a @Slot; state and content cross the bridge as JSON strings.
 """
 import json
 import os
+from pathlib import Path
 
-from PySide6.QtCore import QObject, Signal, Slot
+from PySide6.QtCore import QMarginsF, QObject, Signal, Slot, QTimer, QUrl
+from PySide6.QtGui import QDesktopServices, QPageLayout, QPageSize
+from PySide6.QtWebEngineCore import QWebEnginePage
+from PySide6.QtWidgets import QFileDialog
 
-from bearings import __version__, config
+from bearings import __version__, config, cheatsheet_pdf
 
 
 class Backend(QObject):
@@ -64,3 +68,54 @@ class Backend(QObject):
     def load_content(self) -> str:
         """Return the active content (cached copy or bundled seed) as JSON."""
         return json.dumps(config.load_content())
+
+    @Slot(result=str)
+    def load_cheatsheets(self) -> str:
+        """Return the cheat-sheet reference content as JSON."""
+        return json.dumps(config.load_cheatsheets())
+
+    # --- cheat-sheet PDF export ----------------------------------------------
+    @Slot(str)
+    def export_cheatsheet(self, sheet_id: str) -> None:
+        """Render one cheat sheet to a print-friendly PDF the user chooses a path
+        for, then open it so they can print. No network; purely local."""
+        sheets = {s.get("id"): s for s in config.load_cheatsheets().get("sheets", [])}
+        sheet = sheets.get(sheet_id)
+        if not sheet:
+            return
+
+        default_name = f"bearings-{sheet_id}.pdf"
+        path, _ = QFileDialog.getSaveFileName(
+            None, "Save cheat sheet as PDF",
+            str(Path.home() / default_name), "PDF files (*.pdf)")
+        if not path:
+            return
+        if not path.lower().endswith(".pdf"):
+            path += ".pdf"
+
+        html = cheatsheet_pdf.build_html(sheet)
+        page = QWebEnginePage(self)
+        self._print_page = page   # keep a reference alive during async printing
+        base = QUrl.fromLocalFile(str(config.WEB) + "/")   # so bundled fonts resolve
+
+        def on_load(ok: bool) -> None:
+            if not ok:
+                self._print_page = None
+                return
+            layout = QPageLayout(
+                QPageSize(QPageSize.Letter), QPageLayout.Orientation.Portrait,
+                QMarginsF(0, 0, 0, 0))
+            # Small delay lets the bundled fonts finish loading before render.
+            QTimer.singleShot(400, lambda: page.printToPdf(path, layout))
+
+        def on_done(fpath: str, success: bool) -> None:
+            if success and fpath:
+                QDesktopServices.openUrl(QUrl.fromLocalFile(fpath))
+                self.notify.emit("Cheat sheet saved as PDF")
+            else:
+                self.notify.emit("Could not export the cheat sheet")
+            self._print_page = None
+
+        page.loadFinished.connect(on_load)
+        page.pdfPrintingFinished.connect(on_done)
+        page.setHtml(html, base)

@@ -119,6 +119,7 @@ window.App = (function () {
 
     boot(be, rawState, rawContent) {
       backend = be;
+      window.backendRef = be;   // for lazy per-screen bridge calls
       State.init(be, rawState);
       Content.load(rawContent);
       if (State.get("onboarded")) {

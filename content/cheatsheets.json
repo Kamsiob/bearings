@@ -1,0 +1,345 @@
+{
+  "version": "1.0.0",
+  "sheets": [
+    {
+      "id": "ujust",
+      "title": "ujust commands",
+      "subtitle": "Bazzite's shortcut for common maintenance & fixes",
+      "intro": "ujust is a Bazzite tool that turns common maintenance and troubleshooting tasks into short, memorable commands, typed into a terminal as the word ujust followed by the command name. Typing ujust by itself, with nothing after it, lists every command available, and a graphical app called Bazzite Portal offers many of the same commands as clickable buttons for anyone who'd rather avoid the terminal entirely.",
+      "commands": [
+        {
+          "name": "update",
+          "desc": "Updates the system, all Flatpak apps, and any containers, all in one go, instead of updating each separately."
+        },
+        {
+          "name": "device-info",
+          "desc": "Gathers useful information about your system into a shareable link, handy when asking for help somewhere."
+        },
+        {
+          "name": "logs-this-boot",
+          "desc": "Shows all system messages from the current session, useful for tracking down what went wrong after something misbehaves."
+        },
+        {
+          "name": "fix-reset-steam",
+          "desc": "Resets Steam back to a fresh state without touching your games, saves, or library, useful if Steam itself is acting up."
+        },
+        {
+          "name": "fix-proton-hang",
+          "desc": "Force-closes any stuck Proton or Wine processes, useful when a game fails to close properly and won't let you relaunch it."
+        },
+        {
+          "name": "restart-pipewire",
+          "desc": "Restarts the audio system, a quick fix for crackling or broken sound."
+        },
+        {
+          "name": "clean-system",
+          "desc": "Clears out old, unused container images, Flatpak leftovers, and update data to free up disk space."
+        },
+        {
+          "name": "enroll-secure-boot-key",
+          "desc": "Registers the driver signing key needed to use Secure Boot with an Nvidia graphics card."
+        },
+        {
+          "name": "bios",
+          "desc": "Reboots the computer straight into its BIOS or UEFI firmware screen, skipping the usual boot process."
+        },
+        {
+          "name": "regenerate-grub",
+          "desc": "Rebuilds the boot menu so Windows shows up properly alongside Bazzite, useful after installing Windows on a dual-boot setup."
+        },
+        {
+          "name": "setup-boot-windows-steam",
+          "desc": "Adds a shortcut inside Steam that reboots straight into Windows, a convenience for dual-boot setups."
+        },
+        {
+          "name": "enable-tailscale",
+          "desc": "Turns on support for Tailscale, the private networking tool."
+        },
+        {
+          "name": "setup-decky",
+          "desc": "Installs and configures Decky Loader, a plugin system for Steam's Gaming Mode."
+        },
+        {
+          "name": "bazzite-cli",
+          "desc": "Adds a more informative, nicer-looking terminal prompt style."
+        },
+        {
+          "name": "ujust --choose",
+          "desc": "Not a single task, this opens an interactive menu of every available command, worth remembering on its own if none of the specific names above stick."
+        }
+      ],
+      "outro": "Run any of these by typing ujust followed by the command name, for example ujust update."
+    },
+    {
+      "id": "shortcuts",
+      "title": "Keyboard shortcuts",
+      "subtitle": "KDE Plasma defaults — Bazzite's desktop edition",
+      "intro": "These are the default KDE Plasma shortcuts, since that's the desktop environment Bazzite's desktop edition uses, and every one of them can be changed under System Settings, Shortcuts. Meta refers to the key with the Windows-style logo on most keyboards.",
+      "sections": [
+        {
+          "title": "Getting around",
+          "items": [
+            {
+              "keys": "Meta",
+              "desc": "Opens the application launcher and search."
+            },
+            {
+              "keys": "Alt+F2  /  Alt+Space",
+              "desc": "Opens KRunner, a quick launcher for apps, calculations, and commands."
+            },
+            {
+              "keys": "Alt+Tab",
+              "desc": "Switches between open windows."
+            },
+            {
+              "keys": "Alt+Shift+Tab",
+              "desc": "Switches between open windows in reverse order."
+            },
+            {
+              "keys": "Ctrl+Esc",
+              "desc": "Opens System Activity, a live view of running processes and resource usage."
+            }
+          ]
+        },
+        {
+          "title": "Managing the active window",
+          "items": [
+            {
+              "keys": "Alt+F4",
+              "desc": "Closes it."
+            },
+            {
+              "keys": "Ctrl+Q",
+              "desc": "Quits the application entirely, closing all of its windows."
+            },
+            {
+              "keys": "Ctrl+Alt+Esc",
+              "desc": "Force-quit a frozen application by clicking on it."
+            },
+            {
+              "keys": "Alt+F3",
+              "desc": "Opens that window's own operations menu — move, resize, keep on top, and similar."
+            },
+            {
+              "keys": "Meta+Up",
+              "desc": "Maximizes the active window."
+            },
+            {
+              "keys": "Meta+Down",
+              "desc": "Minimizes it."
+            },
+            {
+              "keys": "Meta+Left",
+              "desc": "Tiles it to the left half of the screen."
+            },
+            {
+              "keys": "Meta+Right",
+              "desc": "Tiles it to the right half."
+            }
+          ]
+        },
+        {
+          "title": "Virtual desktops and activities",
+          "items": [
+            {
+              "keys": "Ctrl+F1 – Ctrl+F4",
+              "desc": "Jump directly to virtual desktop one through four."
+            },
+            {
+              "keys": "Ctrl+F9",
+              "desc": "Shows every window on the current virtual desktop at once."
+            },
+            {
+              "keys": "Ctrl+F10",
+              "desc": "Shows every window across every virtual desktop at once."
+            },
+            {
+              "keys": "Ctrl+F7",
+              "desc": "Shows only the windows belonging to the current application."
+            },
+            {
+              "keys": "Ctrl+F12",
+              "desc": "Shows the desktop by minimizing everything at once."
+            },
+            {
+              "keys": "Meta+Tab",
+              "desc": "Switches to the next Activity, a broader concept than a virtual desktop, each with its own layout and set of apps."
+            },
+            {
+              "keys": "Meta+Shift+Tab",
+              "desc": "Switches to the previous Activity."
+            },
+            {
+              "keys": "Meta+Q",
+              "desc": "Opens the Activities manager."
+            }
+          ]
+        },
+        {
+          "title": "Seeing and zooming",
+          "items": [
+            {
+              "keys": "Meta+=",
+              "desc": "Zooms in on the whole desktop."
+            },
+            {
+              "keys": "Meta+-",
+              "desc": "Zooms back out."
+            },
+            {
+              "keys": "Meta+0",
+              "desc": "Resets the zoom to normal."
+            },
+            {
+              "keys": "Meta+P",
+              "desc": "Switches between display configurations, useful right after connecting or disconnecting an external monitor."
+            }
+          ]
+        },
+        {
+          "title": "Getting help",
+          "items": [
+            {
+              "keys": "F1",
+              "desc": "Opens the help manual for whatever application is focused."
+            },
+            {
+              "keys": "Shift+F1",
+              "desc": "Turns on What's This mode — click any element on screen to learn what it does."
+            }
+          ]
+        },
+        {
+          "title": "Working with text and documents",
+          "items": [
+            {
+              "keys": "Ctrl+A",
+              "desc": "Selects all."
+            },
+            {
+              "keys": "Ctrl+Z",
+              "desc": "Undoes."
+            },
+            {
+              "keys": "Ctrl+Shift+Z",
+              "desc": "Redoes."
+            },
+            {
+              "keys": "Ctrl+X",
+              "desc": "Cuts."
+            },
+            {
+              "keys": "Ctrl+C",
+              "desc": "Copies."
+            },
+            {
+              "keys": "Ctrl+V",
+              "desc": "Pastes."
+            },
+            {
+              "keys": "Ctrl+N",
+              "desc": "Starts a new document or window."
+            },
+            {
+              "keys": "Ctrl+S",
+              "desc": "Saves."
+            },
+            {
+              "keys": "Ctrl+P",
+              "desc": "Prints."
+            },
+            {
+              "keys": "Ctrl+F",
+              "desc": "Finds."
+            },
+            {
+              "keys": "Ctrl+W",
+              "desc": "Closes the current document or tab."
+            },
+            {
+              "keys": "F5",
+              "desc": "Refreshes."
+            }
+          ]
+        },
+        {
+          "title": "Working with files",
+          "items": [
+            {
+              "keys": "Alt+Left",
+              "desc": "Goes back."
+            },
+            {
+              "keys": "Alt+Right",
+              "desc": "Goes forward."
+            },
+            {
+              "keys": "Alt+Up",
+              "desc": "Goes up to the folder containing the current one."
+            },
+            {
+              "keys": "Alt+Home",
+              "desc": "Jumps to the home folder."
+            },
+            {
+              "keys": "Ctrl+L",
+              "desc": "Lets you type a location to jump straight to it."
+            },
+            {
+              "keys": "Ctrl+H",
+              "desc": "Toggles whether hidden files and folders are shown."
+            },
+            {
+              "keys": "Ctrl+Shift+A",
+              "desc": "Inverts the current selection."
+            },
+            {
+              "keys": "Delete",
+              "desc": "Moves the selected item to the trash."
+            },
+            {
+              "keys": "Shift+Delete",
+              "desc": "Deletes it permanently, skipping the trash."
+            },
+            {
+              "keys": "F2",
+              "desc": "Renames the selected file."
+            },
+            {
+              "keys": "Ctrl+Shift+N",
+              "desc": "Creates a new folder."
+            },
+            {
+              "keys": "F4",
+              "desc": "Opens a terminal panel embedded right inside the file manager window."
+            }
+          ]
+        },
+        {
+          "title": "Locking and leaving",
+          "items": [
+            {
+              "keys": "Ctrl+Alt+L",
+              "desc": "Locks the screen."
+            },
+            {
+              "keys": "Ctrl+Alt+Delete",
+              "desc": "Opens the leave screen, with options to log out, restart, or shut down."
+            }
+          ]
+        },
+        {
+          "title": "Screenshots",
+          "items": [
+            {
+              "keys": "Print Screen",
+              "desc": "Opens Spectacle, the built-in screenshot tool, for capturing the full screen or a chosen region."
+            }
+          ]
+        }
+      ],
+      "note": "Text and document shortcuts are standard across nearly every application, not just KDE's own. File shortcuts apply mainly inside Dolphin and file dialogs.",
+      "outro": "The full list, and the ability to customize any of these, lives under System Settings, Shortcuts, Global Shortcuts."
+    }
+  ]
+}

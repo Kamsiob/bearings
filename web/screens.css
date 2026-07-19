@@ -219,3 +219,36 @@
 .sr-snippet { color: var(--ink-muted); font-size: 0.87rem; line-height: 1.4; }
 .sr-row mark { background: rgba(232,176,75,0.28); color: var(--ink); border-radius: 3px; padding: 0 2px; }
 .sr-empty { text-align: center; color: var(--ink-muted); padding: 50px 20px; font-size: 0.98rem; }
+
+/* --- Cheat Sheet --------------------------------------------------------- */
+.cs-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.cs-tabs { display: flex; gap: 8px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--r-pill); padding: 4px; }
+.cs-tab {
+  padding: 8px 18px; border-radius: var(--r-pill); border: 0; background: transparent;
+  color: var(--ink-muted); font-weight: 600; font-size: 0.9rem; transition: color 0.15s, background 0.15s;
+}
+.cs-tab:hover { color: var(--ink); }
+.cs-tab.on { background: var(--primary); color: #fff; box-shadow: var(--shadow-primary); }
+.cs-print .ni-icon { width: 17px; height: 17px; }
+
+.cs-intro { color: var(--ink-muted); max-width: 780px; line-height: 1.5; margin: 0 0 16px; }
+.cs-note { color: var(--ink-muted); font-size: 0.88rem; max-width: 780px; line-height: 1.45;
+  border-left: 2px solid var(--glass-border); padding-left: 12px; margin: 0 0 16px; }
+.cs-outro { color: var(--ink-muted); font-size: 0.9rem; margin: 16px 0 0; padding-top: 14px;
+  border-top: 1px solid var(--glass-border); }
+
+.cs-panel { padding: 10px 20px; }
+.cs-table { width: 100%; border-collapse: collapse; }
+.cs-table td { padding: 9px 8px; vertical-align: top; border-top: 1px solid var(--glass-border); font-size: 0.9rem; line-height: 1.4; }
+.cs-table tr:first-child td { border-top: 0; }
+.cs-cmd { font-family: var(--font-mono); font-weight: 600; color: var(--primary-light); white-space: nowrap; width: 1%; padding-right: 18px; }
+.cs-keys { font-family: var(--font-mono); font-weight: 600; color: var(--ink); white-space: nowrap; width: 1%; padding-right: 18px; }
+.cs-desc { color: var(--ink-muted); }
+
+/* shortcuts: two-column masonry of sections inside one glass panel */
+.cs-cols { column-count: 2; column-gap: 34px; padding: 20px 24px; }
+@media (max-width: 900px) { .cs-cols { column-count: 1; } }
+.cs-sec { break-inside: avoid; margin-bottom: 18px; display: inline-block; width: 100%; }
+.cs-sec-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--primary-light);
+  margin: 0 0 6px; padding-bottom: 5px; border-bottom: 1px solid var(--glass-border); }
+.cs-cols .cs-table td { border-top: 0; padding: 5px 8px; }

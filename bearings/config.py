@@ -18,7 +18,9 @@ from pathlib import Path
 
 APP_DIR = "bearings"
 ROOT = Path(__file__).resolve().parent.parent
+WEB = ROOT / "web"
 BUNDLED_CONTENT = ROOT / "content" / "content.json"
+BUNDLED_CHEATSHEETS = ROOT / "content" / "cheatsheets.json"
 
 
 def _xdg(env: str, default: Path) -> Path:
@@ -93,6 +95,11 @@ def load_content() -> dict:
 
 def save_content_cache(content: dict) -> bool:
     return _write_json(content_cache_file(), content)
+
+
+def load_cheatsheets() -> dict:
+    """Static reference content (ujust + shortcuts). Bundled, not user-editable."""
+    return _read_json(BUNDLED_CHEATSHEETS) or {"version": None, "sheets": []}
 
 
 # --- version comparison --------------------------------------------------
