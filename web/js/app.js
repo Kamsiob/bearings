@@ -99,6 +99,12 @@ window.App = (function () {
 
     currentScreen() { return current; },
 
+    // Dev-only Search prefill passthrough (empty in normal use).
+    devSearchQuery(cb) {
+      if (backend && backend.dev_search_query) backend.dev_search_query(cb);
+      else cb("");
+    },
+
     refreshFooter() {
       const el = document.getElementById("foot-platform");
       if (el) el.textContent = State.get("platform") || "—";

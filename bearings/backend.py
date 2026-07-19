@@ -37,6 +37,12 @@ class Backend(QObject):
         normal use). Lets screenshots target a specific screen without clicking."""
         return os.environ.get("BEARINGS_START_SCREEN", "")
 
+    @Slot(result=str)
+    def dev_search_query(self) -> str:
+        """Dev helper: BEARINGS_SEARCH_Q prefills the Search field (empty in
+        normal use), so filtered/empty states can be captured deterministically."""
+        return os.environ.get("BEARINGS_SEARCH_Q", "")
+
     # --- local state (disk-backed, atomic writes) ----------------------------
     @Slot(result=str)
     def load_state(self) -> str:
