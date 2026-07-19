@@ -1,0 +1,261 @@
+/* =========================================================================
+   Bearings by Kamsiob — design system
+   Exact tokens from the approved design. Values here are the spec, not a
+   starting point: colors, radii, blurs and shadows are copied deliberately.
+   ========================================================================= */
+
+/* --- Fonts (bundled locally; the app never calls a CDN) ------------------ */
+@font-face {
+  font-family: "Fraunces";
+  src: url("fonts/Fraunces.ttf") format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/SpaceGrotesk.ttf") format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fonts/IBMPlexMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("fonts/IBMPlexMono-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* --- Color + shape tokens ------------------------------------------------ */
+:root {
+  --bg: #15101F;              /* deep violet-black — window base */
+  --ink: #F1EDFB;            /* main text on dark surfaces */
+  --ink-muted: #A79FC4;      /* secondary / less important text */
+
+  --glass: rgba(255, 255, 255, 0.05);        /* default translucent fill */
+  --glass-strong: rgba(255, 255, 255, 0.09); /* stronger fill: headers/panels */
+  --glass-border: rgba(255, 255, 255, 0.11); /* hairline border on glass */
+
+  --primary: #6C4FE0;        /* main accent */
+  --primary-light: #9C86FF;  /* glow / links / lighter accent text */
+  --gold: #E8B04B;           /* secondary accent: verified stamps, feedback */
+  --gold-deep: #B9841F;      /* pressed / darker gold */
+
+  /* Category solid fills. Dark text (--bg) sits on all of them. */
+  --cat-universal: #9089B0;
+  --cat-productivity: #E8B04B;
+  --cat-creator: #FF7A5C;
+  --cat-gamer: #4FC3F7;
+  --cat-coder: #4ADE80;
+  --cat-privacy: #C084FC;
+  --cat-ink: #15101F;        /* text/icon color on every category fill */
+
+  /* Radii */
+  --r-card: 20px;            /* 16–24px on cards/panels */
+  --r-panel: 24px;
+  --r-pill: 9999px;          /* chips, badges, buttons */
+
+  /* Effects */
+  --blur-glass: 24px;
+  --shadow-primary: 0 8px 24px rgba(108, 79, 224, 0.40);
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --sidebar-w: 220px;
+}
+
+/* --- Reset / base -------------------------------------------------------- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;               /* the shell manages its own scrolling */
+}
+::selection { background: rgba(108, 79, 224, 0.45); color: #fff; }
+a { color: var(--primary-light); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Scrollbars, tuned to the dark glass look */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: var(--r-pill);
+  border: 2px solid transparent; background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); background-clip: content-box; }
+
+/* --- Ambient glow field --------------------------------------------------
+   Three large blurred circles behind ALL content, on every screen. Clipped
+   to the window's rounded corners, lowest z-index, never intercept clicks. */
+#glow {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden; pointer-events: none;
+  border-radius: 14px;            /* clip to window's rounded corners */
+}
+#glow .orb { position: absolute; border-radius: 50%; }
+#glow .orb-tl {           /* top-left, primary purple */
+  width: 440px; height: 440px;
+  top: -150px; left: -140px;
+  background: var(--primary); opacity: 0.28;
+  filter: blur(100px);
+}
+#glow .orb-br {           /* bottom-right, gold */
+  width: 480px; height: 480px;
+  bottom: -170px; right: -150px;
+  background: var(--gold); opacity: 0.16;
+  filter: blur(110px);
+}
+#glow .orb-c {            /* central, lighter purple */
+  width: 320px; height: 320px;
+  top: 42%; left: 46%;
+  background: var(--primary-light); opacity: 0.10;
+  filter: blur(90px);
+}
+
+/* --- Glass surface primitive --------------------------------------------- */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-card);
+}
+.glass-strong { background: var(--glass-strong); }
+
+/* --- Utility type -------------------------------------------------------- */
+.mono-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+.display { font-family: var(--font-display); font-weight: 600; line-height: 1.12; }
+
+/* =========================================================================
+   App shell: sidebar + content
+   ========================================================================= */
+#app { position: relative; z-index: 1; display: flex; height: 100vh; }
+
+/* --- Sidebar ------------------------------------------------------------- */
+#sidebar {
+  width: var(--sidebar-w); flex: 0 0 var(--sidebar-w);
+  margin: 14px 0 14px 14px;
+  display: flex; flex-direction: column;
+  padding: 20px 14px;
+  border-radius: var(--r-panel);
+}
+.brand { display: flex; align-items: center; gap: 12px; padding: 6px 8px 4px; }
+.brand .compass { width: 38px; height: 38px; flex: 0 0 38px; }
+.brand .wordmark { display: flex; flex-direction: column; line-height: 1; }
+.brand .wm-main { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; }
+.brand .wm-sub { font-family: var(--font-body); font-weight: 500; font-size: 0.72rem; color: var(--ink-muted); margin-top: 3px; }
+
+.nav { margin-top: 22px; display: flex; flex-direction: column; gap: 4px; }
+.nav-divider { height: 1px; background: var(--glass-border); margin: 12px 6px; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: var(--r-pill);
+  color: var(--ink); background: transparent; border: 0;
+  width: 100%; text-align: left; font-size: 0.94rem; font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.2s ease;
+}
+.nav-item .ni-icon { width: 20px; height: 20px; flex: 0 0 20px; opacity: 0.9; }
+.nav-item:hover { background: rgba(255, 255, 255, 0.06); }
+.nav-item.muted { color: var(--ink-muted); }
+.nav-item.muted:hover { color: var(--ink); }
+.nav-item.active {
+  background: var(--primary); color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+.nav-item.active .ni-icon { opacity: 1; }
+
+.sidebar-foot { margin-top: auto; padding: 10px 8px 2px; }
+.sidebar-foot .coming-from { font-size: 0.78rem; color: var(--ink-muted); }
+.sidebar-foot .coming-from b { color: var(--ink); font-weight: 600; }
+
+/* --- Content region ------------------------------------------------------ */
+#content {
+  flex: 1; min-width: 0;
+  overflow-y: auto; overflow-x: hidden;
+  padding: 26px 34px 40px;
+}
+.screen { max-width: 1120px; margin: 0 auto; animation: fade 0.22s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.screen-head { margin-bottom: 22px; }
+.screen-head h1 { font-family: var(--font-display); font-weight: 600; font-size: 2rem; margin: 0 0 6px; }
+.screen-head .sub { color: var(--ink-muted); font-size: 1rem; margin: 0; }
+
+.placeholder {
+  padding: 40px; text-align: center; color: var(--ink-muted);
+  border: 1px dashed var(--glass-border); border-radius: var(--r-card);
+}
+
+/* =========================================================================
+   Reusable components (buttons, chips, badges) — used across screens
+   ========================================================================= */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--r-pill);
+  border: 1px solid var(--glass-border); background: var(--glass);
+  color: var(--ink); font-weight: 600; font-size: 0.92rem;
+  transition: background 0.15s ease, box-shadow 0.2s ease, transform 0.05s ease;
+}
+.btn:hover { background: rgba(255, 255, 255, 0.10); }
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--primary); border-color: transparent; color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+.btn-primary:hover { background: #7a5eec; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border-radius: var(--r-pill);
+  border: 1px solid var(--glass-border); background: var(--glass);
+  color: var(--ink); font-weight: 500; font-size: 0.88rem;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.chip:hover { background: rgba(255, 255, 255, 0.09); }
+.chip.selected { background: var(--primary); border-color: transparent; color: #fff; box-shadow: var(--shadow-primary); }
+.chip.locked { opacity: 0.9; cursor: default; }
+
+/* Category badge — pill with a soft glow in its own color */
+.cat-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: var(--r-pill);
+  font-family: var(--font-mono); text-transform: uppercase;
+  letter-spacing: 0.08em; font-size: 0.64rem; font-weight: 600;
+  color: var(--cat-ink);
+}
+.cat-badge[data-cat="universal"]   { background: var(--cat-universal);   box-shadow: 0 0 14px rgba(144,137,176,0.32); }
+.cat-badge[data-cat="productivity"] { background: var(--cat-productivity); box-shadow: 0 0 14px rgba(232,176,75,0.32); }
+.cat-badge[data-cat="creator"]      { background: var(--cat-creator);      box-shadow: 0 0 14px rgba(255,122,92,0.32); }
+.cat-badge[data-cat="gamer"]        { background: var(--cat-gamer);        box-shadow: 0 0 14px rgba(79,195,247,0.32); }
+.cat-badge[data-cat="coder"]        { background: var(--cat-coder);        box-shadow: 0 0 14px rgba(74,222,128,0.32); }
+.cat-badge[data-cat="privacy"]      { background: var(--cat-privacy);      box-shadow: 0 0 14px rgba(192,132,252,0.32); }
+
+.tag-label {
+  font-family: var(--font-mono); text-transform: uppercase;
+  letter-spacing: 0.10em; font-size: 0.62rem; font-weight: 500;
+  color: var(--ink-muted);
+}
