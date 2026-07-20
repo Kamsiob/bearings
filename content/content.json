@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tips": [
     {
       "id": 1,
@@ -364,6 +364,174 @@
       "tag": "Concept",
       "title": "A use your Gmail here privacy feature is often mostly IMAP with a label.",
       "body": "Some privacy-focused email services let you connect an existing Gmail account, but mail to anyone not also on that service still flows through Google's servers unencrypted, same as before. Worth checking what the feature actually changes technically before assuming it's a bigger privacy win than it is."
+    },
+    {
+      "id": 53,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "Homebrew is the tidy way to install command-line tools.",
+      "body": "Bazzite includes Homebrew, the same package manager many developers know from macOS, and it's the recommended route for terminal and command-line programs. It installs everything into its own isolated area without touching the base system, so nothing it does can destabilize your install."
+    },
+    {
+      "id": 54,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "Reach for the tools in a sensible order, from least invasive to most.",
+      "body": "For a graphical app, try Flatpak first. For a command-line tool, try Homebrew. For anything needing a full traditional Linux environment, use a Distrobox container. Only fall back to layering a package onto the system image as a genuine last resort, since layered packages can hold up future system updates until they're removed."
+    },
+    {
+      "id": 55,
+      "category": "coder",
+      "tag": "Trick",
+      "title": "Managing containers doesn't have to mean memorizing commands.",
+      "body": "Bazzite ships with graphical container managers, BoxBuddy and others, that let you create, enter, and remove Distrobox containers through a normal window with buttons, no command-line ritual required."
+    },
+    {
+      "id": 56,
+      "category": "coder",
+      "tag": "Gotcha",
+      "title": "A layered package can quietly block your next system update.",
+      "body": "Because layered packages have to be rebuilt against each new system image, one that doesn't cooperate can stall updates entirely until you remove it. If updates suddenly stop applying, a package you layered a while ago is a prime suspect."
+    },
+    {
+      "id": 57,
+      "category": "coder",
+      "tag": "Concept",
+      "title": "Quadlet turns a container into a proper background service.",
+      "body": "When you want something running continuously, a local database, a personal tool, a server, Quadlet lets you define it as a systemd service using a short text file, so it starts on boot and is managed with the same commands as any other service. It's more advanced than the everyday install methods, but it's the clean, native way to run persistent things on Bazzite."
+    },
+    {
+      "id": 58,
+      "category": "coder",
+      "tag": "Trick",
+      "title": "VS Code works best when it runs inside your container, not outside it.",
+      "body": "A common friction point is installing an editor on the base system but keeping your actual tools in a container. Running the editor from inside the same Distrobox container as your toolchain, or using its remote container support, keeps everything lined up and avoids a lot of \"works in the terminal but not the editor\" confusion."
+    },
+    {
+      "id": 59,
+      "category": "creator",
+      "tag": "Trick",
+      "title": "DaVinci Resolve has an official one-command install now.",
+      "body": "Rather than wrestling with the immutable filesystem, Bazzite provides a ujust install-resolve command that sets Resolve up inside a purpose-built container for you. It's the sanctioned path, and it sidesteps the dependency errors people used to hit trying to install it directly."
+    },
+    {
+      "id": 60,
+      "category": "creator",
+      "tag": "Gotcha",
+      "title": "A sandboxed creative app can't see your files until you let it.",
+      "body": "Because Flatpak apps are sandboxed, a video editor or audio tool may only have access to a few folders by default, which is why your media sometimes seems invisible to it. The pre-installed Flatseal app lets you grant an app access to the folders it needs through a simple checklist, no terminal required."
+    },
+    {
+      "id": 61,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "OBS runs well here, and Bazzite even pre-tunes some of it.",
+      "body": "OBS Studio, the standard for recording and streaming, works through Flatpak, and Bazzite ships with sensible integrations already in place. It's a genuinely strong platform for a creator, contrary to the assumption that streaming and recording are Windows-only strengths."
+    },
+    {
+      "id": 62,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "Your audio runs through PipeWire, which makes routing sound between apps easier, not harder.",
+      "body": "Bazzite uses PipeWire, a modern audio system that can route audio between applications flexibly, the kind of thing that used to require fiddly extra software on Linux. For a creator, that means sending one app's sound into another, or splitting audio sources, is far more approachable than it once was."
+    },
+    {
+      "id": 63,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "Color and RAW work each have a mature free home.",
+      "body": "Beyond general photo editing, Krita is a genuinely professional painting and digital art tool, and Blender covers 3D, motion graphics, and even video editing in one package. Neither is a compromise pick, both are used in real professional pipelines."
+    },
+    {
+      "id": 64,
+      "category": "creator",
+      "tag": "Habit",
+      "title": "Keep large media libraries off the sandbox's default path.",
+      "body": "Sandboxed creative apps behave best when your big project and media folders are in a location you've explicitly granted access to, rather than scattered in spots the sandbox blocks. Deciding on one media folder and granting access to it once saves repeated \"file not found\" frustration later."
+    },
+    {
+      "id": 65,
+      "category": "productivity",
+      "tag": "Concept",
+      "title": "Bazaar is your app store, and it's the right first stop for almost anything.",
+      "body": "Bazzite includes Bazaar, a friendly graphical store for browsing and installing apps, no command line involved. For the large majority of everyday software, this is the intended and easiest way to get it, think of it the way you'd think of an app store on your phone."
+    },
+    {
+      "id": 66,
+      "category": "productivity",
+      "tag": "Concept",
+      "title": "LibreOffice opens and saves your Office files, and Bazzite smooths its rough edges.",
+      "body": "The pre-installed LibreOffice suite handles Word, Excel, and PowerPoint files, and Bazzite grants it the extra permissions it needs to print and integrate with the desktop properly, something that occasionally trips up office software on other setups."
+    },
+    {
+      "id": 67,
+      "category": "productivity",
+      "tag": "Trick",
+      "title": "One update command covers everything you've installed.",
+      "body": "Instead of updating the system, your apps, and any containers separately, the ujust update command sweeps all of them at once. It's the single habit that keeps a Bazzite machine current with the least effort."
+    },
+    {
+      "id": 68,
+      "category": "productivity",
+      "tag": "Concept",
+      "title": "Android apps can run on your desktop if you need them.",
+      "body": "Through a tool called Waydroid, Bazzite can run Android apps in a window, useful for the occasional app that only exists on mobile. It's not something most people need day to day, but it's there when a specific app leaves you no other option."
+    },
+    {
+      "id": 69,
+      "category": "productivity",
+      "tag": "Reassurance",
+      "title": "Your files live in familiar, ordinary folders.",
+      "body": "Documents, Downloads, Pictures, and the rest work exactly as you'd expect, in a normal home folder you own and control. The immutable, protected part of Bazzite is the operating system itself, not your personal files, which stay fully yours to organize however you like."
+    },
+    {
+      "id": 70,
+      "category": "productivity",
+      "tag": "Habit",
+      "title": "Let the app store handle updates rather than chasing them per app.",
+      "body": "Because most of your software comes from one place, you rarely need to hunt down individual updaters the way you might have on Windows. Checking the store now and then, or running the one update command, keeps everything current without the per-app nagging."
+    },
+    {
+      "id": 71,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "Your computer can quietly run real services in the background with Quadlet.",
+      "body": "Want your own media server, file sync, or ad-blocker running at home? Quadlet lets you define each as a background service from a short text file, so it starts automatically and stays running. It's the clean, built-in way to self-host on Bazzite without bolting on extra platforms."
+    },
+    {
+      "id": 72,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "Rootless containers are a real privacy and safety win.",
+      "body": "Bazzite is built to run containers \"rootless,\" meaning a self-hosted service runs with limited privileges rather than full control of your system. If something in a container were ever compromised, that boundary sharply limits the damage, a meaningful safety margin when you're hosting things yourself."
+    },
+    {
+      "id": 73,
+      "category": "privacy",
+      "tag": "Trick",
+      "title": "You don't have to manage self-hosted services from the command line.",
+      "body": "Web-based dashboards like Cockpit or Portainer give you a browser window to start, stop, and monitor your containers and services, turning self-hosting from a terminal chore into something closer to a control panel."
+    },
+    {
+      "id": 74,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "Popular self-hosted apps are mostly a matter of pointing to the right container image.",
+      "body": "The bulk of the self-hosting world, media servers, file sync, note-taking, dashboards, is distributed as ready-made container images. On Bazzite that means running one is usually a matter of referencing the image and setting a folder and a port, not building anything from scratch."
+    },
+    {
+      "id": 75,
+      "category": "privacy",
+      "tag": "Habit",
+      "title": "Keep a self-hosted service's data in a folder you chose on purpose.",
+      "body": "Point each service's storage at a clear, deliberate location in your home folder rather than leaving it buried in container internals. It makes backing up your data trivial and keeps everything easy to find later."
+    },
+    {
+      "id": 76,
+      "category": "privacy",
+      "tag": "Reassurance",
+      "title": "Self-hosting on Bazzite doesn't mean turning your machine into a fragile server.",
+      "body": "Because services run as isolated containers on top of the stable, protected base system, experimenting with them doesn't put your actual computer at risk. If a service misbehaves, you remove its container and the rest of your system is untouched."
     }
   ],
   "lookup": [
