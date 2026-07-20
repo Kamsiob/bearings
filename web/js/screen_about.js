@@ -39,7 +39,7 @@ Screens.about = function (el) {
 
       <div class="glass about-callout">
         <p><b>Zero data collection.</b> Everything runs locally on your machine. No accounts, no
-        telemetry, no analytics — nothing phones home. Free and open source under the MIT license.</p>
+        telemetry, no analytics — nothing phones home. Free and open source under the GNU AGPLv3 license.</p>
         <p class="about-callout-coffee">It's free, and it stays free — no paywall, nothing ever gated
         behind payment. If it's helped you find your footing, you can
         <a class="coffee-link" data-url="https://buymeacoffee.com/kamsiob">
@@ -59,7 +59,7 @@ Screens.about = function (el) {
         </button>
       </div>
 
-      <p class="about-foot">Bearings v<span id="about-ver">${UI.esc(__APP_VERSION__())}</span> · MIT licensed</p>
+      <p class="about-foot">Bearings v<span id="about-ver">${UI.esc(__APP_VERSION__())}</span> · AGPLv3 licensed</p>
     </div>`;
 
   el.querySelectorAll("[data-url]").forEach((btn) =>

@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue">
+  <img alt="License: AGPL v3" src="https://img.shields.io/badge/license-AGPL%20v3-blue">
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-blue">
   <img alt="Platform: Linux" src="https://img.shields.io/badge/platform-Linux%20(KDE)-lightgrey">
   <img alt="Telemetry: none" src="https://img.shields.io/badge/telemetry-none-brightgreen">
@@ -165,5 +165,5 @@ bearings.spec              PyInstaller build definition
 
 ## License
 
-[MIT](LICENSE) — free and open source. Fonts (Fraunces, Space Grotesk, IBM Plex Mono) are bundled
+[GNU AGPLv3](LICENSE) — free, open source, and copyleft. You can use, modify, and fork it; if you run a modified version as a hosted or network service, AGPLv3 requires releasing your source changes too. Fonts (Fraunces, Space Grotesk, IBM Plex Mono) are bundled
 under the SIL Open Font License; see `web/fonts/LICENSES.md`.
