@@ -40,11 +40,16 @@ window.Content = (function () {
     tips() { return store.tips; },
     lookup() { return store.lookup; },
     tipById(id) { return store.tips.find((t) => String(t.id) === String(id)); },
-    // Tips filtered to a set of active category keys (universal always shown).
+    // Tips filtered to exactly the given category keys, in each category's
+    // natural order (selected topics lead, universal no longer forced in — the
+    // default view already includes universal via the user's saved categories).
     tipsFor(activeCats) {
-      const set = new Set(activeCats || []);
-      set.add("universal");
-      return store.tips.filter((t) => set.has(t.category));
+      const wanted = (activeCats && activeCats.length) ? activeCats : CATEGORIES.map((c) => c.key);
+      const order = {};
+      wanted.forEach((k, i) => { order[k] = i; });
+      return store.tips
+        .filter((t) => order.hasOwnProperty(t.category))
+        .sort((a, b) => (order[a.category] - order[b.category]) || (a.id - b.id));
     },
     countByCategory(key) { return store.tips.filter((t) => t.category === key).length; },
   };

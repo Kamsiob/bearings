@@ -3,9 +3,10 @@
    checkbox with the category color and strikes through. Progress persists. */
 Screens.checklist = function (el) {
   const cats = App.getFilter();
+  const active = (cats && cats.length) ? cats : Content.CATEGORIES.map((c) => c.key);
   const groups = Content.CATEGORIES
     .map((c) => ({ cat: c, tips: Content.tips().filter((t) => t.category === c.key) }))
-    .filter((g) => g.tips.length && (cats.includes(g.cat.key) || g.cat.key === "universal"));
+    .filter((g) => g.tips.length && active.includes(g.cat.key));
 
   const totalAll = groups.reduce((n, g) => n + g.tips.length, 0);
 

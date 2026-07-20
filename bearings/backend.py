@@ -49,6 +49,12 @@ class Backend(QObject):
         normal use), so filtered/empty states can be captured deterministically."""
         return os.environ.get("BEARINGS_SEARCH_Q", "")
 
+    @Slot(result=str)
+    def dev_filter(self) -> str:
+        """Dev helper: BEARINGS_FILTER (comma-separated category keys) sets the
+        active Deck/Checklist focus filter, mirroring a Home 'focus' pick."""
+        return os.environ.get("BEARINGS_FILTER", "")
+
     # --- local state (disk-backed, atomic writes) ----------------------------
     @Slot(result=str)
     def load_state(self) -> str:

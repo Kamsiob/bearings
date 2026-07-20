@@ -61,7 +61,12 @@ window.App = (function () {
       </div>`;
 
     document.querySelectorAll(".nav-item").forEach((btn) => {
-      btn.addEventListener("click", () => App.navigate(btn.dataset.screen));
+      btn.addEventListener("click", () => {
+        // Sidebar nav shows your normal view; a Home "focus" filter only lasts
+        // until you navigate via the sidebar.
+        App.clearFilter();
+        App.navigate(btn.dataset.screen);
+      });
     });
   }
 
@@ -160,14 +165,23 @@ window.App = (function () {
       if (be.content_update && be.content_update.connect)
         be.content_update.connect((j) => App.onUpdateResult(j));
 
-      const startAndMaybeCheck = (screen) => {
-        this.enterMainShell(screen);
+      const start = (screen, devFilter) => {
+        this.enterMainShell(screen);           // clears any filter, renders, navigates
+        if (devFilter) { App.setFilter(devFilter); App.navigate(screen); }
         if (State.get("updateAutoCheck") && be.check_content_update) be.check_content_update();
       };
 
       if (State.get("onboarded")) {
         backend.start_screen(function (dev) {
-          startAndMaybeCheck(dev && Screens[dev] ? dev : "home");
+          const screen = dev && Screens[dev] ? dev : "home";
+          if (backend.dev_filter) {            // dev-only focus filter; empty in normal use
+            backend.dev_filter(function (f) {
+              const cats = f ? f.split(",").map((s) => s.trim()).filter(Boolean) : null;
+              start(screen, cats);
+            });
+          } else {
+            start(screen, null);
+          }
         });
       } else {
         Onboarding.render(document.getElementById("root"));

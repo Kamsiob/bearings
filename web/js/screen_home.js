@@ -62,16 +62,16 @@ Screens.home = function (el) {
       </div>
     </div>`;
 
-  // Territory click: focus the Deck + Checklist on that category, go to Deck.
+  // Territory click: focus the Deck + Checklist on that one category, go to Deck.
   el.querySelectorAll(".terr-row").forEach((btn) => {
     btn.addEventListener("click", () => {
-      App.setFilter(["universal", btn.dataset.cat]);
+      App.setFilter([btn.dataset.cat]);
       App.navigate("deck");
     });
   });
 
   el.querySelector('[data-act="open-deck"]')?.addEventListener("click", () => {
-    if (featured) App.setDeckTo(featured.id);
+    if (featured) { App.setFilter([featured.category]); App.setDeckTo(featured.id); }
     App.navigate("deck");
   });
 
@@ -80,9 +80,9 @@ Screens.home = function (el) {
     el.querySelector(`[data-act="${act}"]`)?.addEventListener("click", () => App.navigate(go[act]));
   });
 
-  // Gamer picks: add Gamer to the active filter, jump to the Deck.
+  // Gamer picks: focus the Deck on the Gamer topic and jump straight to it.
   el.querySelector('[data-act="gamer"]')?.addEventListener("click", () => {
-    App.addToFilter("gamer");
+    App.setFilter(["gamer"]);
     App.navigate("deck");
   });
 };
