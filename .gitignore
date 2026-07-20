@@ -45,3 +45,6 @@ Thumbs.db
 # --- Claude Code ---
 # Personal, machine-local settings (permission allowlist, etc). Not for sharing.
 .claude/settings.local.json
+
+# AppImage tooling cache
+.cache/
