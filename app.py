@@ -15,8 +15,9 @@ import sys
 from pathlib import Path
 
 # The app id follows the packaging: inside a Flatpak it's the Flatpak id
-# (com.kamsiob.Bearings); natively it's com.kamsiob.bearings. Keeping the window
-# app_id in sync with the installed .desktop file makes the icon/window group.
+# (io.github.kamsiob.Bearings); natively it's com.kamsiob.bearings. Keeping the
+# window app_id in sync with the installed .desktop file makes the icon/window
+# group correctly.
 APP_ID = os.environ.get("FLATPAK_ID", "com.kamsiob.bearings")
 
 # QtWebEngine can trip over some GPU stacks; keep rendering predictable. Inside a

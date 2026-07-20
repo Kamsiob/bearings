@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.kamsiob.Bearings</id>
+  <id>io.github.kamsiob.Bearings</id>
 
   <name>Bearings</name>
   <summary>Find your footing on Bazzite Linux</summary>
@@ -8,7 +8,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
 
-  <developer id="com.kamsiob">
+  <developer id="io.github.kamsiob">
     <name>Kamsiob</name>
   </developer>
 
@@ -38,7 +38,7 @@
     </p>
   </description>
 
-  <launchable type="desktop-id">com.kamsiob.Bearings.desktop</launchable>
+  <launchable type="desktop-id">io.github.kamsiob.Bearings.desktop</launchable>
 
   <categories>
     <category>Utility</category>

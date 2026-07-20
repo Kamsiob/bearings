@@ -9,7 +9,7 @@
 # ONLY for the optional, off-by-default content-update check. No filesystem
 # access — user data lives in the app's own sandboxed dirs, and saving a cheat
 # sheet PDF goes through the file-chooser portal.
-app-id: com.kamsiob.Bearings
+app-id: io.github.kamsiob.Bearings
 runtime: org.kde.Platform
 runtime-version: '6.11'
 sdk: org.kde.Sdk
@@ -95,15 +95,15 @@ modules:
       - cp -r app.py bearings web content assets ${FLATPAK_DEST}/share/bearings/
       - install -Dm755 packaging/flatpak/bearings ${FLATPAK_DEST}/bin/bearings
       # Desktop entry, AppStream metadata, and icons.
-      - install -Dm644 packaging/flatpak/com.kamsiob.Bearings.desktop
-        ${FLATPAK_DEST}/share/applications/com.kamsiob.Bearings.desktop
-      - install -Dm644 packaging/flatpak/com.kamsiob.Bearings.metainfo.xml
-        ${FLATPAK_DEST}/share/metainfo/com.kamsiob.Bearings.metainfo.xml
+      - install -Dm644 packaging/flatpak/io.github.kamsiob.Bearings.desktop
+        ${FLATPAK_DEST}/share/applications/io.github.kamsiob.Bearings.desktop
+      - install -Dm644 packaging/flatpak/io.github.kamsiob.Bearings.metainfo.xml
+        ${FLATPAK_DEST}/share/metainfo/io.github.kamsiob.Bearings.metainfo.xml
       - install -Dm644 assets/icon.svg
-        ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/com.kamsiob.Bearings.svg
+        ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/io.github.kamsiob.Bearings.svg
       - for s in 16 32 48 64 128 256 512; do
         install -Dm644 assets/icons/icon-$s.png
-        ${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/com.kamsiob.Bearings.png;
+        ${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/io.github.kamsiob.Bearings.png;
         done
     sources:
       # Pinned to the v1.0.0 code plus the small Flatpak app-id handling that
