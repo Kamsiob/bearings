@@ -114,12 +114,10 @@ an opt-in toggle (off by default) checks a public copy on GitHub for a newer `ve
 in; a **Check now** button does a one-off pull. Any failure is silent and keeps the cached copy.
 
 > **Note on the update source.** The check fetches
-> `raw.githubusercontent.com/kamsiob/bearings/main/content/content.json`. This repository is
-> **private**, so that raw URL isn't publicly reachable yet and the check will simply no-op
-> (keeping the bundled/cached copy) until `content/content.json` is served from a public location —
-> e.g. by making the repo public, or by pointing `CONTENT_UPDATE_URL` in `bearings/config.py` at a
-> public mirror. Nothing about the user or device is ever sent; as with any web request, the source
-> IP is visible to GitHub for that one request.
+> `raw.githubusercontent.com/kamsiob/bearings/main/content/content.json` — the content file in this
+> public repo. Nothing about the user or device is ever sent; as with any web request, the source IP
+> is visible to GitHub for that one request. To repoint it, change `CONTENT_UPDATE_URL` in
+> `bearings/config.py`.
 
 ## Cheat sheets
 
