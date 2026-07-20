@@ -20,6 +20,9 @@ Screens.cheatsheet = function (el) {
   let active = "ujust";
 
   Cheatsheets.load(function (data) {
+    // The first load is async; if the user navigated away meanwhile, don't
+    // render over whatever screen now owns the content area.
+    if (App.currentScreen() !== "cheatsheet") return;
     const sheets = {};
     (data.sheets || []).forEach((s) => { sheets[s.id] = s; });
 

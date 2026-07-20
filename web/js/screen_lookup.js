@@ -11,13 +11,13 @@ Screens.lookup = function (el) {
   };
 
   function highlightFamiliar(text, platform) {
-    let out = UI.esc(text);
-    const words = KEYWORDS[platform] || [];
-    words.forEach((w) => {
-      const re = new RegExp("(" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "g");
-      out = out.replace(re, '<strong class="fam-hi">$1</strong>');
-    });
-    return out;
+    const safe = UI.esc(text);
+    // Longest first so "Apple Mail" wins over "Apple"; one combined pass avoids
+    // wrapping a keyword that sits inside an already-highlighted longer one.
+    const words = (KEYWORDS[platform] || []).slice().sort((a, b) => b.length - a.length);
+    if (!words.length) return safe;
+    const alts = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+    return safe.replace(new RegExp("(" + alts + ")", "g"), '<strong class="fam-hi">$1</strong>');
   }
 
   function rows(platform) {

@@ -58,6 +58,10 @@ Screens.search = function (el) {
 
     out.querySelectorAll(".sr-row").forEach((row) => {
       row.addEventListener("click", () => {
+        // Search spans ALL tips, but the Deck is category-filtered. Focus the Deck
+        // on this tip's category so the jump always lands on it (not a stale filter).
+        const tip = Content.tipById(row.dataset.id);
+        if (tip) App.setFilter([tip.category]);
         App.setDeckTo(row.dataset.id);
         App.navigate("deck");
       });

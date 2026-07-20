@@ -107,9 +107,11 @@ def load_content() -> dict:
     bundled one, otherwise the bundled seed (which also refreshes the cache)."""
     bundled = load_bundled_content()
     cached = _read_json(content_cache_file())
-    if cached and is_newer(cached.get("version"), bundled.get("version"), or_equal=True):
+    if (cached and _valid_content(cached)
+            and is_newer(cached.get("version"), bundled.get("version"), or_equal=True)):
         return cached
-    # No cache, or a stale cache (older app shipped with newer seed) -> reseed.
+    # No cache, a corrupt/empty cache, or a stale one (older app shipped a newer
+    # seed) -> fall back to the bundled content and reseed the cache.
     save_content_cache(bundled)
     return bundled
 

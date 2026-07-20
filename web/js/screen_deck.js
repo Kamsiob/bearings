@@ -25,6 +25,7 @@ window.Deck = (function () {
       if (pos >= 0) idx = pos;
     }
     if (idx >= list.length) idx = Math.max(0, list.length - 1);
+    if (idx < 0) idx = 0;
 
     if (!list.length) {
       el.innerHTML = `<div class="screen"><div class="screen-head"><h1>Deck</h1></div>
@@ -99,6 +100,7 @@ window.Deck = (function () {
   }
 
   function step(delta) {
+    if (!list.length) return;
     idx = Math.min(list.length - 1, Math.max(0, idx + delta));
     render();
   }

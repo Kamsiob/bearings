@@ -127,12 +127,16 @@ class Backend(QObject):
 
         html = cheatsheet_pdf.build_html(sheet)
         page = QWebEnginePage(self)
-        self._print_page = page   # keep a reference alive during async printing
+        # Keep every in-flight page alive independently, so a second export can't
+        # orphan the first one's page mid-print.
+        if not hasattr(self, "_print_pages"):
+            self._print_pages = set()
+        self._print_pages.add(page)
         base = QUrl.fromLocalFile(str(config.WEB) + "/")   # so bundled fonts resolve
 
         def on_load(ok: bool) -> None:
             if not ok:
-                self._print_page = None
+                self._print_pages.discard(page)
                 return
             layout = QPageLayout(
                 QPageSize(QPageSize.Letter), QPageLayout.Orientation.Portrait,
@@ -146,7 +150,7 @@ class Backend(QObject):
                 self.notify.emit("Cheat sheet saved as PDF")
             else:
                 self.notify.emit("Could not export the cheat sheet")
-            self._print_page = None
+            self._print_pages.discard(page)
 
         page.loadFinished.connect(on_load)
         page.pdfPrintingFinished.connect(on_done)
