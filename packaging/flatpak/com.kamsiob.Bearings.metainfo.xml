@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.kamsiob.Bearings</id>
+
+  <name>Bearings</name>
+  <summary>Find your footing on Bazzite Linux</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <developer id="com.kamsiob">
+    <name>Kamsiob</name>
+  </developer>
+
+  <description>
+    <p>
+      Bearings is a free, local companion for anyone new to Bazzite — the
+      gaming-focused, immutable, Fedora-based Linux distro. It's the field guide
+      you wish you'd had switching over: the things nobody tells you, and a
+      lookup table matching the apps you already use to their Linux equivalents.
+    </p>
+    <p>
+      It's meant to be something you come back to as you learn, not open once and
+      delete.
+    </p>
+    <p>What's inside:</p>
+    <ul>
+      <li>Familiar Territory — a table matching your Windows, Mac, or ChromeOS apps to what to use on Bazzite, with honest notes on the trade-offs</li>
+      <li>A deck of bite-sized tips across everyday use, gaming, creating, coding, and self-hosting — swipe through them or check them off as they click</li>
+      <li>Printable cheat sheets for the most useful ujust commands and KDE keyboard shortcuts</li>
+      <li>Instant search across every tip</li>
+    </ul>
+    <p>
+      Everything runs on your machine. No account, no login, no telemetry, no
+      analytics — nothing phones home. The only time it touches the internet is
+      an optional check for updated tips (off by default) and when you tap an
+      external link.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">com.kamsiob.Bearings.desktop</launchable>
+
+  <categories>
+    <category>Utility</category>
+    <category>Education</category>
+  </categories>
+
+  <keywords>
+    <keyword>Bazzite</keyword>
+    <keyword>Linux</keyword>
+    <keyword>Fedora</keyword>
+    <keyword>guide</keyword>
+    <keyword>reference</keyword>
+    <keyword>switch</keyword>
+  </keywords>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Familiar Territory — apps you know, matched to Bazzite equivalents</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/lookup.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Home — a rotating tip, your territories, and quick shortcuts</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/home.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The Deck — one tip at a time, focused on your topics</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/deck.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Checklist — every tip grouped by category, check off what's landed</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/checklist.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Cheat Sheet — printable one-pagers for ujust and KDE shortcuts</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/cheatsheet.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://kamsiob.com</url>
+  <url type="bugtracker">https://github.com/kamsiob/bearings/issues</url>
+  <url type="vcs-browser">https://github.com/kamsiob/bearings</url>
+
+  <content_rating type="oars-1.1" />
+
+  <branding>
+    <color type="primary" scheme_preference="light">#9C86FF</color>
+    <color type="primary" scheme_preference="dark">#15101F</color>
+  </branding>
+
+  <releases>
+    <release version="1.0.0" date="2026-07-19">
+      <description>
+        <p>First public release of Bearings.</p>
+      </description>
+    </release>
+  </releases>
+</component>

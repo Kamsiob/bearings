@@ -14,8 +14,18 @@ import os
 import sys
 from pathlib import Path
 
-# QtWebEngine can trip over some GPU stacks; keep rendering predictable.
-os.environ.setdefault("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu")
+# The app id follows the packaging: inside a Flatpak it's the Flatpak id
+# (com.kamsiob.Bearings); natively it's com.kamsiob.bearings. Keeping the window
+# app_id in sync with the installed .desktop file makes the icon/window group.
+APP_ID = os.environ.get("FLATPAK_ID", "com.kamsiob.bearings")
+
+# QtWebEngine can trip over some GPU stacks; keep rendering predictable. Inside a
+# Flatpak the chromium sandbox can't nest, so disable it there (the Flatpak
+# sandbox already confines the app, which only ever loads local content).
+_flags = "--disable-gpu"
+if os.environ.get("FLATPAK_ID"):
+    _flags += " --no-sandbox"
+os.environ.setdefault("QTWEBENGINE_CHROMIUM_FLAGS", _flags)
 
 from PySide6.QtCore import QUrl  # noqa: E402
 from PySide6.QtGui import QIcon  # noqa: E402
@@ -72,7 +82,7 @@ class MainWindow(QMainWindow):
 def main() -> int:
     QApplication.setApplicationName(APP_NAME)
     QApplication.setOrganizationName(ORG_NAME)
-    QApplication.setDesktopFileName("com.kamsiob.bearings")
+    QApplication.setDesktopFileName(APP_ID)
 
     app = QApplication(sys.argv)
 

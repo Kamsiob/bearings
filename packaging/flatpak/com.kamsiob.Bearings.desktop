@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Bearings
+GenericName=Bazzite Field Guide
+Comment=A living field guide for switching to Bazzite Linux — local, private, offline
+Exec=bearings
+Icon=com.kamsiob.Bearings
+Terminal=false
+Categories=Utility;
+Keywords=Bazzite;Linux;Guide;Reference;Switch;Fedora;
+StartupNotify=true
+StartupWMClass=com.kamsiob.Bearings
