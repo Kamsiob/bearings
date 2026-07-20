@@ -59,7 +59,11 @@ Screens.about = function (el) {
         </button>
       </div>
 
-      <p class="about-foot">Bearings v<span id="about-ver">${UI.esc(__APP_VERSION__())}</span> · AGPLv3 licensed</p>
+      <div class="about-legal">
+        <p class="about-foot">Bearings v<span id="about-ver">${UI.esc(__APP_VERSION__())}</span> · AGPLv3 licensed</p>
+        <p class="about-notice">© 2026 Kamsiob. It comes with absolutely no warranty —
+          <a class="about-license-link" data-url="https://github.com/kamsiob/bearings/blob/main/LICENSE">read the full license</a>.</p>
+      </div>
     </div>`;
 
   el.querySelectorAll("[data-url]").forEach((btn) =>

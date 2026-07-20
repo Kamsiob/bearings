@@ -330,5 +330,10 @@
 .about-feedback:hover { background: rgba(108,79,224,0.24); }
 .about-feedback .about-link-icon, .about-feedback .about-link-ext { color: var(--primary-light); }
 
-.about-foot { margin-top: 28px; color: var(--ink-muted); font-size: 0.85rem;
-  font-family: var(--font-mono); letter-spacing: 0.04em; }
+.about-legal { margin-top: 28px; }
+.about-foot { color: var(--ink-muted); font-size: 0.85rem;
+  font-family: var(--font-mono); letter-spacing: 0.04em; margin: 0; }
+.about-notice { color: var(--ink-muted); font-size: 0.82rem; line-height: 1.5;
+  margin: 6px 0 0; max-width: 560px; }
+.about-license-link { color: var(--primary-light); text-decoration: none; cursor: pointer; }
+.about-license-link:hover { text-decoration: underline; }
