@@ -20,26 +20,41 @@
 
 <table align="center">
   <tr>
-    <td><img src="screenshots/home.png" width="410" alt="Home screen"></td>
-    <td><img src="screenshots/deck.png" width="410" alt="Deck — one tip at a time"></td>
+    <td><img src="screenshots/home.png" width="410" alt="Home — today's bearing and your seven territories with live tip counts"></td>
+    <td><img src="screenshots/deck.png" width="410" alt="Deck — one tip at a time, here a Media &amp; Home Theater tip"></td>
   </tr>
   <tr>
-    <td><img src="screenshots/checklist.png" width="410" alt="Checklist grouped by category"></td>
+    <td><img src="screenshots/checklist.png" width="410" alt="Checklist — every tip grouped by category, checkable"></td>
     <td><img src="screenshots/cheatsheet.png" width="410" alt="Cheat Sheet — printable one-pagers"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><img src="screenshots/about.png" width="410" alt="About — the version check: one button, pressed by you, never on its own"></td>
   </tr>
 </table>
 
 > **Everything stays local. No accounts, no telemetry, no analytics, nothing phones home.**
-> The only time Bearings touches the internet is one *opt-in* content-update check against a
-> public file on GitHub, and when you tap an external link (opens your browser) or the feedback
-> link (opens your mail app). It makes no other network calls — no CDN fonts, no `fetch`, no
-> browser storage.
+> Bearings makes exactly two kinds of network request, both of which a person has to ask for:
+> an *opt-in* content-update check against a public file on GitHub (Settings, off by default),
+> and the *press-only* version check on the About screen, which asks GitHub's public releases
+> endpoint whether a newer Bearings exists. Neither runs on a timer, and the version check has
+> no launch path at all. Beyond those, tapping an external link opens your browser and the
+> feedback link opens your mail app. There are no other network calls — no CDN fonts, no
+> `fetch`, no browser storage.
 
 Built with **PySide6 + QtWebEngine**: the interface is local HTML/CSS/JS in a `QWebEngineView`,
 with a thin Python layer underneath (over `QWebChannel`) handling local file reads/writes, the
 window, and that single outbound update request.
 
 ---
+
+## What's inside
+
+**96 tips across seven categories** — Universal, Productivity, Creator, Gamer, Coder,
+Privacy & Self-Hosting, and Media & Home Theater (private media servers, ripping your own discs,
+getting it all onto the TV) — plus a **17-row Familiar Territory table** matching the apps you
+already use to their Bazzite equivalents, and two printable cheat sheets. Tips are tagged
+*Concept*, *Trick*, *Fix*, *Gotcha*, *Reassurance*, or *Habit*, and you pick which categories you
+care about; Universal is always on.
 
 ## Screens
 
@@ -52,7 +67,9 @@ window, and that single outbound update request.
 - **Search** — instant, on-device filtering across every tip.
 - **Cheat Sheet** — two printable one-pagers (ujust commands, KDE keyboard shortcuts).
 - **Settings** — change your platform/categories anytime; opt into content updates.
-- **About** — links, feedback, and the promises above.
+- **About** — links, feedback, the promises above, and a **version check**: one button that
+  asks whether a newer Bearings has been published, and tells you how to get it for the way you
+  installed it (app store for a Flatpak, releases page for an AppImage). It runs only when pressed.
 
 ## Run it from source
 
@@ -152,7 +169,8 @@ scripts/install.sh                     # installs into the KDE app menu under ~/
 app.py                     PySide6 window + QWebChannel bridge
 bearings/                  thin Python layer
   backend.py               slots/signals exposed to the UI
-  config.py                local state + content cache + update check (only place it writes/fetches)
+  config.py                local state + content cache + the opt-in content update
+  release_check.py         the About screen's press-only "is there a newer Bearings?" check
   cheatsheet_pdf.py        print-friendly cheat-sheet renderer (app + standalone PDFs)
 web/                       the interface (HTML/CSS/JS), bundled fonts, no CDN
 content/                   content.json (tips + lookup) and cheatsheets.json
