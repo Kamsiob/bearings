@@ -79,4 +79,4 @@ Screens.about = function (el) {
 };
 
 // Fallback used before the async version arrives.
-function __APP_VERSION__() { return "1.0.0"; }
+function __APP_VERSION__() { return "1.1.0"; }

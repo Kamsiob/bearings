@@ -79,16 +79,16 @@ To fully reset the app, delete `~/.config/bearings` and `~/.local/share/bearings
 ## The content JSON (editing tips & equivalents)
 
 All tips and lookup entries live in **`content/content.json`** — a single file with a top-level
-`version` string. Edit it directly; bump `version` (dotted integers, e.g. `1.0.0` → `1.1.0`) so
+`version` string. Edit it directly; bump `version` (dotted integers, e.g. `1.1.0` → `1.2.0`) so
 clients recognise it as newer.
 
 ```jsonc
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "tips": [
     {
       "id": 1,
-      "category": "universal",   // universal | productivity | creator | gamer | coder | privacy
+      "category": "universal",   // universal | productivity | creator | gamer | coder | privacy | media
       "tag": "Concept",          // Concept | Trick | Fix | Gotcha | Reassurance | Habit (closed list)
       "title": "…",
       "body": "One to three sentences."

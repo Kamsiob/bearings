@@ -11,7 +11,7 @@ BUNDLE="dist/bearings"
 APPDIR="build/AppDir"
 CACHE=".cache"
 OUT_DIR="dist"
-VERSION="${1:-1.0.0}"
+VERSION="${1:-1.1.0}"
 ARCH="${ARCH:-x86_64}"
 
 [ -x "$BUNDLE/bearings" ] || { echo "error: $BUNDLE/bearings missing — run scripts/build.sh first" >&2; exit 1; }
