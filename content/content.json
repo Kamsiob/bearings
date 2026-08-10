@@ -651,6 +651,27 @@
       "tag": "Concept",
       "title": "A private photo library at home can fully replace the cloud kind.",
       "body": "Immich is a self-hosted photo and video app that looks and feels like the big cloud photo services, with phone backup, albums, search, and face grouping, but every photo stays on hardware you own. For a lot of people it's the single most satisfying thing to self-host, because it directly replaces a service they were paying for and being tracked by."
+    },
+    {
+      "id": 94,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "There's a real, if unofficial, way to run the Affinity apps here.",
+      "body": "Affinity's design apps, a popular affordable alternative to the big subscription design suite, have no official Linux version, but the community maintains a packaged build that runs them through a compatibility layer, distributed as a single downloadable file. It genuinely works, and it opens your existing Affinity files."
+    },
+    {
+      "id": 95,
+      "category": "creator",
+      "tag": "Gotcha",
+      "title": "If you rely on that Affinity build, export your files to open formats early.",
+      "body": "Because it's a volunteer-maintained, unofficial build, a future update to the app could break it, and then your files would be stranded in a format nothing else opens well. The safe move is to open your existing work and export it to open formats in one sitting, SVG for vector, layered PSD or TIFF for image work, PDF for layouts, so a broken build later is an annoyance rather than a loss. It's the same own your files thinking that applies to everything else."
+    },
+    {
+      "id": 96,
+      "category": "creator",
+      "tag": "Concept",
+      "title": "For a quick Photoshop-like editor with no install, a browser tab does the job.",
+      "body": "Photopea is a free, browser-based image editor with a genuinely familiar interface, and it opens layered PSD files directly. For a lot of quick edits it removes the need to install anything at all, and it works the same on any machine you sit down at."
     }
   ],
   "lookup": [
@@ -757,6 +778,38 @@
       "linux": "Bitwarden",
       "note": "Already cross-platform, nothing to switch, it works the same way here as anywhere else.",
       "verified": "July 2026"
+    },
+    {
+      "id": 14,
+      "task": "Graphic design",
+      "familiar": "Affinity Designer or Illustrator",
+      "linux": "Affinity via the community build, or Inkscape",
+      "note": "Affinity runs through an unofficial community build that works but isn't officially supported, Inkscape is the fully native, fully free option for vector work.",
+      "verified": "August 2026"
+    },
+    {
+      "id": 15,
+      "task": "Media server",
+      "familiar": "Plex or iTunes library",
+      "linux": "Jellyfin",
+      "note": "Free and private with no account, streams your own movies and shows to your TV and phone over your home network.",
+      "verified": "August 2026"
+    },
+    {
+      "id": 16,
+      "task": "Ripping discs",
+      "familiar": "No common name equivalent",
+      "linux": "MakeMKV plus HandBrake",
+      "note": "Rip a disc you own to a file, then compress it, both free, one needs a one-time drive permission fix.",
+      "verified": "August 2026"
+    },
+    {
+      "id": 17,
+      "task": "Managing standalone apps",
+      "familiar": "Dragging an app to Applications on a Mac",
+      "linux": "GearLever",
+      "note": "Gives single-file AppImage apps a proper menu entry and handles their updates, keeping one copy.",
+      "verified": "August 2026"
     }
   ]
 }
