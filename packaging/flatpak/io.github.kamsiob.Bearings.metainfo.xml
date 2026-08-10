@@ -26,15 +26,19 @@
     <p>What's inside:</p>
     <ul>
       <li>Familiar Territory — a table matching your Windows, Mac, or ChromeOS apps to what to use on Bazzite, with honest notes on the trade-offs</li>
-      <li>A deck of bite-sized tips across everyday use, gaming, creating, coding, and self-hosting — swipe through them or check them off as they click</li>
+      <li>A deck of bite-sized tips across seven categories: everyday use, productivity, creating, gaming, coding, privacy and self-hosting, and home media. Swipe through them or check them off as they click</li>
+      <li>Media and home theater coverage: running your own private media server, ripping the discs you already own, and getting it all onto the TV</li>
       <li>Printable cheat sheets for the most useful ujust commands and KDE keyboard shortcuts</li>
       <li>Instant search across every tip</li>
+      <li>A version check on the About screen that runs only when you press it, and tells you how to update for the way you installed the app</li>
     </ul>
     <p>
       Everything runs on your machine. No account, no login, no telemetry, no
-      analytics — nothing phones home. The only time it touches the internet is
-      an optional check for updated tips (off by default) and when you tap an
-      external link.
+      analytics, nothing phones home. It makes exactly two kinds of network
+      request, and you have to ask for both: an optional check for updated tips
+      (off by default), and the version check on the About screen, which happens
+      only when you press the button. Nothing runs on a timer. Tapping an
+      external link opens your browser, as you would expect.
     </p>
   </description>
 
@@ -52,6 +56,8 @@
     <keyword>guide</keyword>
     <keyword>reference</keyword>
     <keyword>switch</keyword>
+    <keyword>self-hosting</keyword>
+    <keyword>media server</keyword>
   </keywords>
 
   <screenshots>
@@ -74,6 +80,10 @@
     <screenshot>
       <caption>Cheat Sheet — printable one-pagers for ujust and KDE shortcuts</caption>
       <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/cheatsheet.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>About — the version check runs only when you press it</caption>
+      <image>https://raw.githubusercontent.com/kamsiob/bearings/main/screenshots/about.png</image>
     </screenshot>
   </screenshots>
 
