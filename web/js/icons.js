@@ -56,5 +56,14 @@ window.ICONS = (function () {
     globe: () => line('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/>'),
     coffee: () => line('<path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M8 2v2M12 2v2"/>'),
     print: () => line('<path d="M7 8V3h10v5"/><rect x="4" y="8" width="16" height="8" rx="1"/><path d="M7 14h10v6H7z"/>'),
+
+    /* Category marks — one per category, same line family as the nav icons.
+       Universal reuses `globe`; the rest are listed in Content.CATEGORIES. */
+    briefcase: () => line('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12.5h18"/>'),
+    brush: () => line('<path d="M15 4l5 5L9 20H4v-5z"/><path d="M13 6l5 5"/>'),
+    gamepad: () => line('<rect x="2.5" y="7.5" width="19" height="9.5" rx="4.75"/><path d="M7 10.5v3.5M5.25 12.25h3.5"/><path d="M16 11h.01M18.25 13.25h.01"/>'),
+    code: () => line('<path d="M8 6l-5 6 5 6"/><path d="M16 6l5 6-5 6"/><path d="M13.5 4l-3 16"/>'),
+    shield: () => line('<path d="M12 3l7.5 3v6c0 4.2-3.2 6.8-7.5 9-4.3-2.2-7.5-4.8-7.5-9V6z"/>'),
+    clapper: () => line('<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 8V4h18v4"/><path d="M7.5 4L6 8M12 4l-1.5 4M16.5 4L15 8"/>'),
   };
 })();

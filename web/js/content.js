@@ -4,12 +4,13 @@
 window.Content = (function () {
   // Ordered, closed list. Universal is always-on and never a "territory".
   const CATEGORIES = [
-    { key: "universal",    label: "Universal",              var: "--cat-universal",    territory: false },
-    { key: "productivity", label: "Productivity",           var: "--cat-productivity", territory: true },
-    { key: "creator",      label: "Creator",                var: "--cat-creator",      territory: true },
-    { key: "gamer",        label: "Gamer",                  var: "--cat-gamer",        territory: true },
-    { key: "coder",        label: "Coder",                  var: "--cat-coder",        territory: true },
-    { key: "privacy",      label: "Privacy & Self-Hosting", var: "--cat-privacy",      territory: true },
+    { key: "universal",    label: "Universal",              var: "--cat-universal",    icon: "globe",        territory: false },
+    { key: "productivity", label: "Productivity",           var: "--cat-productivity", icon: "briefcase",    territory: true },
+    { key: "creator",      label: "Creator",                var: "--cat-creator",      icon: "brush",        territory: true },
+    { key: "gamer",        label: "Gamer",                  var: "--cat-gamer",        icon: "gamepad",      territory: true },
+    { key: "coder",        label: "Coder",                  var: "--cat-coder",        icon: "code",         territory: true },
+    { key: "privacy",      label: "Privacy & Self-Hosting", var: "--cat-privacy",      icon: "shield",       territory: true },
+    { key: "media",        label: "Media & Home Theater",   var: "--cat-media",        icon: "clapper",      territory: true },
   ];
   // Closed tag vocabulary — never invent new tags.
   const TAGS = ["Concept", "Trick", "Fix", "Gotcha", "Reassurance", "Habit"];
@@ -23,7 +24,7 @@ window.Content = (function () {
     CATEGORIES,
     TAGS,
     territories() { return CATEGORIES.filter((c) => c.territory); },
-    cat(key) { return byKey[key] || { key, label: key, var: "--cat-universal" }; },
+    cat(key) { return byKey[key] || { key, label: key, var: "--cat-universal", icon: "globe" }; },
     catLabel(key) { return (byKey[key] || {}).label || key; },
 
     load(json) {

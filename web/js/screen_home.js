@@ -6,7 +6,7 @@ Screens.home = function (el) {
   const territories = Content.territories().map((c) => {
     const n = Content.countByCategory(c.key);
     return `<button class="terr-row" data-cat="${c.key}">
-        <span class="terr-name">${UI.catDot(c.key)}${UI.esc(c.label)}</span>
+        <span class="terr-name">${UI.catIcon(c.key)}${UI.esc(c.label)}</span>
         <span class="terr-count">${n}</span>
       </button>`;
   }).join("");

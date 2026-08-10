@@ -532,6 +532,62 @@
       "tag": "Reassurance",
       "title": "Self-hosting on Bazzite doesn't mean turning your machine into a fragile server.",
       "body": "Because services run as isolated containers on top of the stable, protected base system, experimenting with them doesn't put your actual computer at risk. If a service misbehaves, you remove its container and the rest of your system is untouched."
+    },
+    {
+      "id": 77,
+      "category": "media",
+      "tag": "Concept",
+      "title": "Your computer can be a private media server, no subscription, no account.",
+      "body": "A free program called Jellyfin turns a folder of movies and shows into a proper library, with artwork and descriptions, streamed to your TV and phone over your own network. It's the same idea as a photo server like Immich, but for video, and unlike the big commercial options there's no account, no monthly fee, and nothing phoning home."
+    },
+    {
+      "id": 78,
+      "category": "media",
+      "tag": "Concept",
+      "title": "Ripping your own discs takes two free tools that work together.",
+      "body": "MakeMKV pulls the movie off a Blu-ray or DVD you own into a file, and HandBrake shrinks that file down to a sensible size without an obvious quality loss. Both install from the app store as Flatpaks. The usual workflow is rip with the first, compress with the second, then drop the result into your Jellyfin library."
+    },
+    {
+      "id": 79,
+      "category": "media",
+      "tag": "Gotcha",
+      "title": "A disc drive needs a special permission before ripping software can see it properly.",
+      "body": "Because of how Linux isolates hardware, MakeMKV can fail to read a disc even when the drive is clearly connected and the disc mounts fine in your file manager. The fix is a one-time udev rule granting raw access to the optical drive. It's a known step, not a sign anything is broken, and once it's in place disc reading just works."
+    },
+    {
+      "id": 80,
+      "category": "media",
+      "tag": "Gotcha",
+      "title": "Most external Blu-ray drives are the same drive inside a different shell.",
+      "body": "A large share of external drives, including several well-known brands, are rebadged versions of the same underlying mechanism from one manufacturer. If you specifically want to avoid that manufacturer, Pioneer is the genuinely different option, at a somewhat higher price. Worth knowing before you assume two differently branded drives are actually different hardware."
+    },
+    {
+      "id": 81,
+      "category": "media",
+      "tag": "Concept",
+      "title": "Direct play is what you want, and it's why hardware video acceleration matters.",
+      "body": "When your TV app can play a video file exactly as it's stored, that's direct play, smooth and effortless. When it can't, the server has to convert the video on the fly, which is heavy work. Turning on your machine's built-in hardware video acceleration, the same VAAPI setup that speeds up a photo server, makes those conversions painless on the occasions they do happen."
+    },
+    {
+      "id": 82,
+      "category": "media",
+      "tag": "Gotcha",
+      "title": "Ripping a disc you own still sits in a legal gray area in the US.",
+      "body": "Even for a disc you paid for, breaking its copy protection to rip it bumps into anti-circumvention rules regardless of ownership. It's extremely widely done, and this isn't legal advice, but it's more honest to know that going in than to find out later."
+    },
+    {
+      "id": 83,
+      "category": "media",
+      "tag": "Concept",
+      "title": "The best TV box for a private server is a plain Android TV device.",
+      "body": "A media streamer like an Nvidia Shield, or most Android TV or Google TV boxes, runs the free Jellyfin app and plays your library directly. You point it at your own server over your home network, nothing leaves the house, and you're not renting anything."
+    },
+    {
+      "id": 84,
+      "category": "media",
+      "tag": "Habit",
+      "title": "A streaming box can be quieted down without replacing it.",
+      "body": "Devices like the Nvidia Shield collect more than they need to by default, but swapping the home screen for a free launcher like Projectivy, deleting the advertising ID, and pointing the device at your ad-blocking DNS strips out most of the noise without buying new hardware."
     }
   ],
   "lookup": [

@@ -24,7 +24,7 @@ Screens.checklist = function (el) {
     }).join("");
     return `<section class="glass cl-card" data-cat="${g.cat.key}">
         <header class="cl-card-head">
-          <span class="cl-cat">${UI.catDot(g.cat.key)}<span class="cl-cat-label">${UI.esc(g.cat.label)}</span></span>
+          <span class="cl-cat">${UI.catIcon(g.cat.key)}<span class="cl-cat-label">${UI.esc(g.cat.label)}</span></span>
           <span class="cl-count mono-label"><span class="cl-done">${done}</span> of ${g.tips.length}</span>
         </header>
         <div class="cl-bar"><span class="cl-bar-fill" style="width:${pct}%;background:var(${g.cat.var})"></span></div>

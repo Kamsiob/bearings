@@ -58,6 +58,7 @@
   --cat-gamer: #4FC3F7;
   --cat-coder: #4ADE80;
   --cat-privacy: #C084FC;
+  --cat-media: #F472B6;
   --cat-ink: #15101F;        /* text/icon color on every category fill */
 
   /* Radii */
@@ -254,6 +255,7 @@ button { font-family: inherit; cursor: pointer; }
 .cat-badge[data-cat="gamer"]        { background: var(--cat-gamer);        box-shadow: 0 0 14px rgba(79,195,247,0.32); }
 .cat-badge[data-cat="coder"]        { background: var(--cat-coder);        box-shadow: 0 0 14px rgba(74,222,128,0.32); }
 .cat-badge[data-cat="privacy"]      { background: var(--cat-privacy);      box-shadow: 0 0 14px rgba(192,132,252,0.32); }
+.cat-badge[data-cat="media"]        { background: var(--cat-media);        box-shadow: 0 0 14px rgba(244,114,182,0.32); }
 
 .tag-label {
   font-family: var(--font-mono); text-transform: uppercase;

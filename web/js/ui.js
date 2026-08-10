@@ -12,10 +12,19 @@ window.UI = (function () {
     return `<span class="cat-badge" data-cat="${catKey}">${esc(c.label)}</span>`;
   }
 
-  // Small colored dot for a category (used in lists).
+  // Small colored dot for a category (used in dense lists).
   function catDot(catKey) {
     const c = Content.cat(catKey);
     return `<span class="cat-dot" style="background:var(${c.var})"></span>`;
+  }
+
+  // The category's own line icon, tinted in its color (used where a category is
+  // named as a heading). Falls back to a plain dot if the icon is missing.
+  function catIcon(catKey) {
+    const c = Content.cat(catKey);
+    const draw = ICONS[c.icon];
+    if (!draw) return catDot(catKey);
+    return `<span class="cat-icon" style="color:var(${c.var})">${draw()}</span>`;
   }
 
   // Deterministic "featured today" pick: rotates once per calendar day.
@@ -27,5 +36,5 @@ window.UI = (function () {
     return day % len;
   }
 
-  return { esc, catBadge, catDot, dailyIndex };
+  return { esc, catBadge, catDot, catIcon, dailyIndex };
 })();
