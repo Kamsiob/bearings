@@ -167,7 +167,7 @@
       "category": "coder",
       "tag": "Concept",
       "title": "Systemd services come in two flavors, and the difference matters.",
-      "body": "A user service only runs while you're logged in. A system service runs regardless, and needs elevated permissions to set up. Enabling linger keeps a user service alive even without an active login session, useful for anything you want running in the background persistently."
+      "body": "A user service only runs while you're logged in. A system service runs regardless, and needs elevated permissions to set up. Linger is the setting that bridges the gap: enabling it for your user, a one-time command, tells the system to keep your own services running around the clock even with no active login session, which is what you almost always want for something like a media or file server."
     },
     {
       "id": 25,
@@ -609,6 +609,34 @@
       "tag": "Reassurance",
       "title": "There's no single manage all my apps window, and that's the normal trade, not a flaw.",
       "body": "Because software lives in a few different places, no one screen lists every app with an update button. The app store covers most of it, GearLever covers standalone files, and the update command covers the rest. It's slightly more spread out than a Mac, in exchange for a base system that's very hard to break."
+    },
+    {
+      "id": 88,
+      "category": "coder",
+      "tag": "Gotcha",
+      "title": "A background container needs the full image address, not the short name.",
+      "body": "When you define a container service, naming the image as just a short name often fails, because the tooling wants the complete address including the registry it comes from. If a service refuses to start and the image name looks too short, that's a common cause, and prefixing it with the full registry path usually fixes it immediately."
+    },
+    {
+      "id": 89,
+      "category": "coder",
+      "tag": "Gotcha",
+      "title": "Shared folders for a container often need a specific flag here, or they get blocked.",
+      "body": "The security layer, SELinux, can silently prevent a container from reading a folder you mounted into it, which looks like the app is broken when it's really just being denied access. Adding the relabel flag to the mount, a small Z on the volume line, tells the system to allow it. It's one of the most common invisible walls people hit when self-hosting on Bazzite."
+    },
+    {
+      "id": 90,
+      "category": "coder",
+      "tag": "Trick",
+      "title": "Your containers can update themselves on a schedule.",
+      "body": "Beyond updating apps by hand, you can enable a built-in timer that periodically checks your running containers for new versions and updates them automatically. Turn it on once and your self-hosted services quietly stay current without you thinking about it."
+    },
+    {
+      "id": 91,
+      "category": "coder",
+      "tag": "Trick",
+      "title": "Track updates for any app you depend on using its releases feed.",
+      "body": "Every project on GitHub publishes a feed of its releases. Drop that feed address into a feed reader, a self-hosted one like FreshRSS works well, and you'll find out the day a new version of something you rely on ships, without checking any page by hand. Especially useful for community-built apps that update irregularly."
     }
   ],
   "lookup": [
