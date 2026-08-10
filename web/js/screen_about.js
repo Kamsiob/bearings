@@ -103,15 +103,8 @@ Screens.about = function (el) {
   /* --- the version check ------------------------------------------------- */
   const btn = el.querySelector('[data-act="check-version"]');
   const out = el.querySelector("#av-result");
-  let install = "unknown";   // filled in locally, no network
   let checking = false;
   let timer = null;
-
-  // How this copy was installed decides what we tell them to do about an
-  // update. This is a local question; it makes no request.
-  if (window.backendRef && backendRef.install_kind) {
-    backendRef.install_kind(function (kind) { if (kind) install = kind; });
-  }
 
   function show(html, tone) {
     if (!out || !document.body.contains(out)) return;
@@ -187,4 +180,4 @@ Screens.about = function (el) {
 };
 
 // Fallback used before the async version arrives.
-function __APP_VERSION__() { return "1.1.0"; }
+function __APP_VERSION__() { return "1.2.0"; }

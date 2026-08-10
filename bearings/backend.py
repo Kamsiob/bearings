@@ -111,17 +111,8 @@ class Backend(QObject):
     # A different thing from check_content_update above: that one refreshes the
     # tips, this one asks whether a newer Bearings has been published. Nothing
     # calls it but the About screen's button, and only when it's pressed.
-    @Slot(result=str)
-    def install_kind(self) -> str:
-        """How this copy was installed, so About can say the right thing about
-        getting an update. Local only, no network."""
-        return release_check.install_kind()
-
-    @Slot(result=str)
-    def releases_url(self) -> str:
-        """The public releases page (shown, and opened on request). No network."""
-        return release_check.RELEASES_PAGE
-
+    # The result carries both how this copy was installed and where to get a new
+    # one, so About needs no second call to work out what to tell the person.
     @Slot()
     def check_app_version(self) -> None:
         """One request to GitHub's public releases endpoint, off the GUI thread,

@@ -7,6 +7,26 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-08-10
+
+### Added
+- **A version check on the About screen.** At rest it shows the version you're running, which the
+  app already knows locally, and a single button. Press it and it makes one request to GitHub's
+  public releases endpoint and tells you plainly: a newer version is available (both numbers shown),
+  you're on the latest, or the check couldn't complete. What it says about *getting* the update
+  depends on how the app was installed: a Flatpak is pointed at the app store (`flatpak update`,
+  Discover, Bazaar) and is never updated by the app itself; an AppImage or standalone build gets a
+  link to the releases page, plus a note that GearLever can manage AppImage updates going forward;
+  anything unidentifiable just gets the releases page.
+- The block carries its own honest note about what the button does, and says explicitly that
+  updating the *tips* is the separate thing over in Settings.
+
+### Notes on the network
+- This check is **strictly user-triggered**. There is no launch hook, no timer, no background
+  thread: `bearings/release_check.py` is only ever entered from a press of that button. Verified
+  with a CPython audit hook (every `urllib.Request`, `socket.connect`, `getaddrinfo`) and a
+  QtWebEngine request interceptor, both silent through a full walk of every screen.
+
 ## [1.1.0] - 2026-08-10
 
 A content release: a whole new category, and a lot of new tips across the existing ones.
@@ -63,6 +83,7 @@ First public release. Licensed under MIT (see *Unreleased* for the move to AGPLv
 - **Distribution** — a portable AppImage and a standalone Linux bundle, plus KDE desktop
   integration (app icon and launcher).
 
-[Unreleased]: https://github.com/kamsiob/bearings/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/kamsiob/bearings/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/kamsiob/bearings/releases/tag/v1.2.0
 [1.1.0]: https://github.com/kamsiob/bearings/releases/tag/v1.1.0
 [1.0.0]: https://github.com/kamsiob/bearings/releases/tag/v1.0.0
