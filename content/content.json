@@ -465,10 +465,10 @@
     },
     {
       "id": 67,
-      "category": "productivity",
-      "tag": "Trick",
-      "title": "One update command covers everything you've installed.",
-      "body": "Instead of updating the system, your apps, and any containers separately, the ujust update command sweeps all of them at once. It's the single habit that keeps a Bazzite machine current with the least effort."
+      "category": "universal",
+      "tag": "Concept",
+      "title": "Your apps live in a few different places, and one command updates almost all of them.",
+      "body": "On this kind of system, software arrives through a few separate channels: the app store for most graphical apps, containers for services, Homebrew for command-line tools, and the occasional standalone file. It sounds like a lot, but a single command, ujust update, sweeps through nearly all of them at once and keeps everything current. You don't have to track them individually."
     },
     {
       "id": 68,
@@ -588,6 +588,27 @@
       "tag": "Habit",
       "title": "A streaming box can be quieted down without replacing it.",
       "body": "Devices like the Nvidia Shield collect more than they need to by default, but swapping the home screen for a free launcher like Projectivy, deleting the advertising ID, and pointing the device at your ad-blocking DNS strips out most of the noise without buying new hardware."
+    },
+    {
+      "id": 85,
+      "category": "universal",
+      "tag": "Trick",
+      "title": "Standalone app files have a helper that makes them behave like real installed apps.",
+      "body": "An AppImage is a single self-contained file you can run from anywhere, handy for the occasional app that isn't in the store, but on its own it won't show up in your menu or update itself. A free tool called GearLever fixes both, giving the app a proper menu entry and handling its updates, so a loose file starts acting like a first-class citizen."
+    },
+    {
+      "id": 86,
+      "category": "universal",
+      "tag": "Gotcha",
+      "title": "If an AMD mini PC feels starved for memory, check one BIOS setting.",
+      "body": "Some AMD machines reserve a large fixed chunk of memory for graphics by default, which can leave the actual system with far less than you paid for and make everything feel sluggish. The setting is in the BIOS under the graphics configuration, often called UMA Frame Buffer Size. Lowering it can hand a surprising amount of memory back to the system, worth checking on any AMD APU machine that feels slower than its specs suggest."
+    },
+    {
+      "id": 87,
+      "category": "universal",
+      "tag": "Reassurance",
+      "title": "There's no single manage all my apps window, and that's the normal trade, not a flaw.",
+      "body": "Because software lives in a few different places, no one screen lists every app with an update button. The app store covers most of it, GearLever covers standalone files, and the update command covers the rest. It's slightly more spread out than a Mac, in exchange for a base system that's very hard to break."
     }
   ],
   "lookup": [
