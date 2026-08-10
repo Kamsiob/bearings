@@ -14,7 +14,7 @@ from PySide6.QtGui import QDesktopServices, QPageLayout, QPageSize
 from PySide6.QtWebEngineCore import QWebEnginePage
 from PySide6.QtWidgets import QFileDialog
 
-from bearings import __version__, config, cheatsheet_pdf
+from bearings import __version__, config, cheatsheet_pdf, release_check
 
 
 class Backend(QObject):
@@ -22,7 +22,8 @@ class Backend(QObject):
 
     # Python -> JS pushes.
     notify = Signal(str)
-    content_update = Signal(str)   # JSON result of an update check
+    content_update = Signal(str)   # JSON result of a *content* update check
+    release_result = Signal(str)   # JSON result of an *app version* check
 
     def __init__(self) -> None:
         super().__init__()
@@ -104,6 +105,31 @@ class Backend(QObject):
         def worker() -> None:
             result = config.check_for_update()
             self.content_update.emit(json.dumps(result))
+        threading.Thread(target=worker, daemon=True).start()
+
+    # --- the app-version check (About) ---------------------------------------
+    # A different thing from check_content_update above: that one refreshes the
+    # tips, this one asks whether a newer Bearings has been published. Nothing
+    # calls it but the About screen's button, and only when it's pressed.
+    @Slot(result=str)
+    def install_kind(self) -> str:
+        """How this copy was installed, so About can say the right thing about
+        getting an update. Local only, no network."""
+        return release_check.install_kind()
+
+    @Slot(result=str)
+    def releases_url(self) -> str:
+        """The public releases page (shown, and opened on request). No network."""
+        return release_check.RELEASES_PAGE
+
+    @Slot()
+    def check_app_version(self) -> None:
+        """One request to GitHub's public releases endpoint, off the GUI thread,
+        started only by a press of the About screen's button. The result comes
+        back on the release_result signal."""
+        def worker() -> None:
+            result = release_check.check_latest_release()
+            self.release_result.emit(json.dumps(result))
         threading.Thread(target=worker, daemon=True).start()
 
     # --- cheat-sheet PDF export ----------------------------------------------
