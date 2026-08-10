@@ -308,6 +308,29 @@
 .coffee-icon { width: 15px; height: 15px; display: inline-flex; }
 .coffee-icon svg { width: 15px; height: 15px; }
 
+/* Version block — same glass panel as the callout above it. At rest it's two
+   lines and a button; the result appears in place, no navigation. */
+.about-version { padding: 20px 22px; margin-bottom: 28px; }
+.about-version .mono-label { display: block; margin-bottom: 10px; }
+.av-have { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.5; color: var(--ink); }
+.av-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.av-check:disabled { opacity: 0.65; cursor: default; box-shadow: none; }
+
+.av-result { margin-top: 14px; padding: 14px 16px; border-radius: var(--r-card);
+  border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.04); }
+.av-line { margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--ink); }
+.av-how { margin: 10px 0 0; font-size: 0.87rem; line-height: 1.55; color: var(--ink-muted); }
+.av-how code { font-family: var(--font-mono); font-size: 0.82rem;
+  padding: 1px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.07); color: var(--ink); }
+.av-open { margin-top: 12px; }
+.av-open .ni-icon { width: 16px; height: 16px; }
+.av-open .ni-icon svg { width: 16px; height: 16px; }
+
+/* A newer version is information, not an alarm: the same understated gold the
+   verified stamps use, and nothing louder. */
+.av-new { border-color: rgba(232, 176, 75, 0.45); background: rgba(232, 176, 75, 0.09); }
+.av-new .av-line b { color: var(--gold); }
+
 .about-more .mono-label { display: block; margin-bottom: 12px; }
 .about-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
 .about-link, .about-feedback {

@@ -19,6 +19,7 @@ window.App = (function () {
   let current = null;
   let filter = null;      // active category filter for Deck/Checklist; null = all selected
   let deckJumpId = null;  // a tip id the Deck should open to (set by Home / links)
+  let releaseHandler = null;  // About registers here to receive its version check
 
   function glowMarkup() {
     return `<div id="glow" aria-hidden="true">
@@ -155,6 +156,15 @@ window.App = (function () {
       }
     },
 
+    // Result of the About screen's app-version check. Routed rather than wired
+    // straight to the screen, so navigating away can't leave a dangling handler.
+    setReleaseHandler(fn) { releaseHandler = fn; },
+    onReleaseResult(json) {
+      let r = null;
+      try { r = JSON.parse(json || "{}"); } catch (e) { r = { ok: false }; }
+      if (releaseHandler) releaseHandler(r);
+    },
+
     boot(be, rawState, rawContent) {
       backend = be;
       window.backendRef = be;   // for lazy per-screen bridge calls
@@ -164,6 +174,10 @@ window.App = (function () {
       if (be.notify && be.notify.connect) be.notify.connect((m) => App.toast(m));
       if (be.content_update && be.content_update.connect)
         be.content_update.connect((j) => App.onUpdateResult(j));
+      // Connected once, but it only ever fires in reply to the About button:
+      // nothing on this side asks for a version check at boot or on a timer.
+      if (be.release_result && be.release_result.connect)
+        be.release_result.connect((j) => App.onReleaseResult(j));
 
       const start = (screen, devFilter) => {
         this.enterMainShell(screen);           // clears any filter, renders, navigates
