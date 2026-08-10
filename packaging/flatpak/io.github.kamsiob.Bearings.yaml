@@ -132,8 +132,8 @@ modules:
         ${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/io.github.kamsiob.Bearings.png;
         done
     sources:
-      # Pinned to the v1.0.0 code plus the small Flatpak app-id handling that
-      # landed just after the tag. Future releases will pin tag + commit together.
+      # Pinned to the v1.2.0 release, tag and commit together as promised.
       - type: git
         url: https://github.com/kamsiob/bearings.git
-        commit: b668848685955d5f26f46d1369dcbb53adfdcf61
+        tag: v1.2.0
+        commit: 8c6d502de983b7496188091b74175aeab318bd7c
