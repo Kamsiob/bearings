@@ -356,7 +356,7 @@
       "category": "privacy",
       "tag": "Concept",
       "title": "Tailscale is useful even if you're not self-hosting anything.",
-      "body": "It creates a private, secure network between your own devices, letting your phone reach your desktop, or vice versa, without opening anything to the public internet."
+      "body": "It creates a private, secure network between your own devices, letting your phone reach your desktop, or vice versa, without opening anything to the public internet. Once you are self-hosting, it's also the safe way to use those services from away from home, since private remote access never means exposing your machine publicly."
     },
     {
       "id": 52,
@@ -637,6 +637,20 @@
       "tag": "Trick",
       "title": "Track updates for any app you depend on using its releases feed.",
       "body": "Every project on GitHub publishes a feed of its releases. Drop that feed address into a feed reader, a self-hosted one like FreshRSS works well, and you'll find out the day a new version of something you rely on ships, without checking any page by hand. Especially useful for community-built apps that update irregularly."
+    },
+    {
+      "id": 92,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "You can run your own private search engine.",
+      "body": "A tool called SearXNG runs on your own machine and fetches results from many search engines at once, stripping out the tracking along the way, so your searches aren't tied back to you by any single provider. You can point your browser at it, and it can even feed local AI tools that need to look things up."
+    },
+    {
+      "id": 93,
+      "category": "privacy",
+      "tag": "Concept",
+      "title": "A private photo library at home can fully replace the cloud kind.",
+      "body": "Immich is a self-hosted photo and video app that looks and feels like the big cloud photo services, with phone backup, albums, search, and face grouping, but every photo stays on hardware you own. For a lot of people it's the single most satisfying thing to self-host, because it directly replaces a service they were paying for and being tracked by."
     }
   ],
   "lookup": [
